@@ -43,7 +43,7 @@ const NavMain = (props) => {
               <NavLink to="/signin">Log in</NavLink>
             </li>
             <li>
-              <NavLink to="/signup">Create account</NavLink>
+              <NavLink to="/signup">Sign up</NavLink>
             </li>
           </React.Fragment>
         )}
