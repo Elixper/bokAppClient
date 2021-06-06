@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import bokLogo from "../images/bokLogo.png"
+
 
 import "../styles/NavMain.css";
 
@@ -22,7 +24,7 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-        <h3 className="logo">App name</h3>
+        <img src={bokLogo} height={40} alt="boklogo"></img>
       </NavLink>
       <ul className="nav-list">
         {context.isLoggedIn && (
@@ -40,10 +42,10 @@ const NavMain = (props) => {
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin">Log in</NavLink>
+              <NavLink to="/signin">LOG IN</NavLink>
             </li>
             <li>
-              <NavLink to="/signup">Sign up</NavLink>
+              <NavLink to="/signup">SIGN UP</NavLink>
             </li>
           </React.Fragment>
         )}
