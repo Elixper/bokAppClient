@@ -9,12 +9,13 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import Test from "./pages/Test";
 
 function App() {
   return (
    
     <div className="App">
-      
+      <Test></Test>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/dashboard" component={Dashboard} />

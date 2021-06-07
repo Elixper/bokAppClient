@@ -12,9 +12,8 @@ class Home extends React.Component {
     return (
       <div className="container">
         <div className="left">
-          <img className="logo" src={logo} alt="book" />
-          <h1>ENJOY THE READ</h1>
-          {/* <Title/> */}
+          <img className="logo" src={process.env.PUBLIC_URL + '/bokLogo.png'} alt="booklogo" />
+          <h1 className="Title">ENJOY THE READ</h1>{/* <Title/> */}
           <p>
             Randomly discover new books to love,
             <br />
