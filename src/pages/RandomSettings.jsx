@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { withRouter, Redirect, NavLink } from "react-router-dom";
 import NavMain from "../components/NavMain";
-import Container from "../components/Base/Container";
-import ButtonGrid from "../components/Items/ButtonGrid"
+import Button from "../components/Base/Button"
+// import Container from "../components/Base/Container";
+// import ButtonGrid from "../components/Items/ButtonGrid";
+
 // import apiHandler from "../../api/apiHandler";
 // import { withUser } from "../Auth/withUser";
 
@@ -17,16 +19,32 @@ class RandomSettings extends Component {
     // }
 
     return (
+
+      
      <div>
        <NavMain/>
-        <button>Art</button>
-        <button>Fantasy </button>
-        <button>Horror</button>
-        <button>Fiction</button>
-        <button>Crime</button>
+       <div ClassName="flex">
+       <Button secondary>Art</Button>
+       <Button secondary>Fantasy</Button>
+       <Button secondary>Horror</Button>
+       <Button secondary>Fiction</Button>
+       <Button secondary>Crime</Button>
+       </div>
+       <Button secondary>NEW AUTHORS ONLY</Button>
+       <Button secondary>WELL-KNOWN AUTHORS</Button>
+       <Button secondary>BOTH OF THEM</Button>
 
-        <button><NavLink to="/your-suggestion">Let's go for a read</NavLink></button>
-      <ButtonGrid></ButtonGrid>
+
+       <Button secondary>Short Read : less than 100 pages</Button>
+       <Button secondary>200 pages and more</Button>
+       <Button secondary>400 pages and more</Button>
+
+       <img src={process.env.PUBLIC_URL + '/GenreBooks.png'} height={200} alt="boklogo"></img>
+       <img src={process.env.PUBLIC_URL + '/yoursuggestion.png'} height={200} alt="boklogo"></img>
+       <img src={process.env.PUBLIC_URL + '/typeofReader.png'} height={200} alt="boklogo"></img>
+
+
+      {/* <ButtonGrid></ButtonGrid>
       <Container>
         <img></img>
         <button>NEW AUTHORS ONLY</button>
@@ -38,10 +56,19 @@ class RandomSettings extends Component {
         <button>Short Read : less than 100 pages</button>
         <button>200 pages and more</button>
         <button>400 pages and more</button>
-      </Container>
+      </Container> */}
+
+        <button><NavLink to="/your-suggestion">Let's go for a read</NavLink></button>
 
 
         </div>
+
+
+
+
+
+
+
     );
   }
 }

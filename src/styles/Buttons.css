@@ -1,7 +1,7 @@
 @import url("./global.css");
 
 .Btn {
-   background-color: white;
+    background-color: white;
     width: max-content;
     padding: 15px 50px;
     font-size: 14px;
@@ -36,4 +36,10 @@
     background-color: var(--main-bg-color);
     color: var(--purple);
     border: 1px solid var(--purple);
+  }
+  
+  .Btn.btn-quaternary {
+    background: var(--purple);
+    color: white;
+    border:none;
   }
