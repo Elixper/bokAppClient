@@ -12,17 +12,17 @@ export default class Test extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(){
+  handleClick(sujet){
     
-    // Changing state
-    this.setState({urlSubject : 'fiction'})
+    // Changing state => pass param => the 
+    this.setState({urlSubject : sujet})
   }
 
   componentDidMount() {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
-        // `https://www.googleapis.com/books/v1/volumes?q=subject:${this.state.urlSubject}&filter=paid-ebooks&orderBy=newest`
+        // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
+        `https://www.googleapis.com/books/v1/volumes?q=subject:${this.state.urlSubject}&filter=paid-ebooks&orderBy=newest&key=`+ process.env.GOOGLE_BOOK_TOKEN
       )
       .then((response) => {
         // console.log(response);
@@ -71,9 +71,9 @@ render() {
   return (
 
       <div>
-        <button >Fiction</button>
-        <button>Romance</button>
-        <button onClick={this.handleClick}>Art</button>
+        <button onClick={() => this.handleClick("fiction")}>Fiction</button>
+        <button onClick={() => this.handleClick("romance")}>Romance</button>
+        <button onClick={() => this.handleClick("art")}>Art</button>
 
           {booksFromArray &&
              <div>
