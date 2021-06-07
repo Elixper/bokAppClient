@@ -1,9 +1,26 @@
 import React from "react";
-import "../../styles/Button.css";
+import "./../../styles/Buttons.css";
 
-const Button = ({ children, className, ...restProps }) => {
+const Button = ({ children, disabled, handleClick, ...rest }) => {
+  const styles = {
+    primary: "primary",
+    secondary: "secondary",
+  };
+
+  let selectedClass;
+  for (const key in rest) {
+    if (styles[key]) {
+      selectedClass = styles[key];
+    }
+  }
+
   return (
-    <button {...restProps} className={`Button ${className || ""}`}>
+    <button
+      disabled={disabled}
+      id="Btn"
+      className={`Btn btn-${selectedClass || ""}`}
+      onClick={handleClick}
+    >
       {children}
     </button>
   );
