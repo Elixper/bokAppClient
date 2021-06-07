@@ -1,57 +1,36 @@
 import React, { Component } from "react";
-import { formDataUtils } from "../../formDataUtils";
-import axios from "axios";
 import apiHandler from "../../api/apiHandler";
+import { formDataUtils } from "../../formDataUtils";
 
-const bokState = {
-  title: "",
-  pseudoAuthor: "",
-  description: "",
-  genre: "",
-  link: "",
-  isSubmitted: false,
-};
+export default class EditBookForm extends Component {
+  state = {
+    httpResponse: null,
+  };
+  bokbookRef = React.createRef();
 
-export default class NewBookForm extends Component {
-  state = bokState;
-
-  bokBookCover = React.createRef();
-
-  handleChange = (event) => {
-    const value = event.target.value;
-    const key = event.target.key;
+  handleChange = (evt) => {
+    const value =
+      evt.target.type === "file" ? evt.target.files[0] : evt.target.value;
+    const key = evt.target.title;
     this.setState({ [key]: value });
   };
-
-  submit = (event) => {
-    event.preventDefault();
-    if (!this.state.genre) {
-      this.setState({ error: "You didn't choose any genre!" }, () => {
-        this.timeOut = setTimeout(() => {
-          this.setState({ error: null });
-        }, 1000);
-      });
-      return;
-    }
+  handleSubmit = (evt) => {
+    evt.preventDefault();
     const formData = new FormData();
     const { httpResponse, ...data } = this.state;
     formDataUtils(formData, data);
-    formData.append("image", this.bokBookCover.current.files[0]);
 
     apiHandler
-      .addBokBook(formData)
+      .updateBokbook(this.props.bokBook.id, formData)
       .then((data) => {
-        this.props.addBokBook(data);
-
+        this.props.totoCase(data);
         this.setState({
-          ...bokState,
           httpResponse: {
             status: "success",
-            message: "Masterpiece successfully added.",
+            message: "Bok succesully update.",
           },
-          isSubmitted: true,
         });
-        this.timeOut = setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
           this.setState({ httpResponse: null });
         }, 1000);
       })
@@ -62,7 +41,7 @@ export default class NewBookForm extends Component {
             message: "An error occured, try again later.",
           },
         });
-        this.timeOut = setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
           this.setState({ httpResponse: null });
         }, 1000);
       });
@@ -71,7 +50,7 @@ export default class NewBookForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.submit}>
+        <form ref={this.bokbookRef} onSubmit={this.submit}>
           <h1>Add Your Masterpiece in Bok</h1>
 
           <div className="title">
@@ -82,6 +61,7 @@ export default class NewBookForm extends Component {
               type="text"
               onChange={this.handleChange}
               placeholder="Title"
+              value={this.state.title || ""}
             />
           </div>
           <div className="pseudo">
@@ -94,20 +74,21 @@ export default class NewBookForm extends Component {
               name="pseudoAuthor"
               onChange={this.handleChange}
               type="text"
-              placeholder="What is your 'nom de plume' ? "
+              placeholder="Change your author name? "
+              value={this.state.pseudoAuthor || ""}
             />
           </div>
 
           <div className="description">
             <label htmlFor="description">
-              {" "}
-              A few words about your chef d'oeuvre{" "}
+              A few words about your chef d'oeuvre
             </label>
             <input
               id="description"
               name="description"
               type="text"
               onChange={this.handleChange}
+              value={this.state.description || ""}
             />
           </div>
 
@@ -140,7 +121,8 @@ export default class NewBookForm extends Component {
               id="image"
               type="file"
               name="image"
-              ref={this.bokBookCover}
+              value={this.image}
+              ref={this.bokbookRef}
             />
           </div>
           <div className="link">
@@ -149,6 +131,7 @@ export default class NewBookForm extends Component {
               id="link"
               name="link"
               type="url"
+              value={this.link}
               placeholder="https://example.com"
               pattern="https://.*"
               size="30"

@@ -13,9 +13,9 @@
     cursor: pointer;
   }
   
-  .Btn:active {
+  /* .Btn:active {
     transform: translate(1px, 1px);
-  }
+  } */
   
   .Btn.btn-primary {
     background: var(--purple);
