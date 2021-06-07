@@ -12,8 +12,8 @@ class UserProvider extends Component {
   componentDidMount() {
     apiHandler
       .isLoggedIn()
-      .then((data) => {
-        this.setState({ user: data, isLoggedIn: true, isLoading: false });
+      .then((response) => {
+        this.setState({ user: response.data, isLoggedIn: true, isLoading: false });
       })
       .catch((error) => {
         this.setState({ user: null, isLoggedIn: false, isLoading: false });
