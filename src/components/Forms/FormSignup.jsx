@@ -53,7 +53,9 @@ class FormSignup extends Component {
           name="password"
         />
         <button>Submit</button>
+        <p>AJOUTER CHAMPS, STYLE PHOTO ETC</p>
       </form>
+      
     );
   }
 }
