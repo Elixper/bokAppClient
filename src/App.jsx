@@ -1,15 +1,16 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 // import NavMain from "./components/NavMain";
+import Test from "./pages/Test";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import RandomSettings from "./pages/RandomSettings";
 import RandomResult from "./pages/RandomResult";
-import Dashboard from "./pages/Dashboard";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-import Test from "./pages/Test";
+
 
 function App() {
   return (

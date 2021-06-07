@@ -21,9 +21,10 @@ class Home extends React.Component {
             Want to gain more visibility as an author ? <br />
             Add your creation to our database !
           </p>
-          <button>
+          
+         
             <NavLink to="/random-settings"><Button tertiary>LET'S GO</Button></NavLink>
-          </button>
+          
         </div>
 
         <div className="right">
