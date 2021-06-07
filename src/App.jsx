@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RandomSettings from "./pages/RandomSettings";
 import RandomResult from "./pages/RandomResult";
+import Dashboard from "./pages/Dashboard";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -14,9 +15,10 @@ function App() {
   return (
    
     <div className="App">
-      <Test></Test>
+      {/* <Test></Test> */}
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/random-settings" component={RandomSettings} />
         <Route exact path="/your-suggestion" component={RandomResult} />
         <Route exact path="/signin" component={Signin} />

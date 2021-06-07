@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Title from "../components/Base/Title";
+// import Title from "../components/Base/Title";
 import "./../styles/global.css";
 import "./../styles/Home.css";
+import Button from "./../components/Base/Button"
+// import logo from "./../images/bokLogo.png";
+// import books from "./../images/illusBooks.png";
 
 class Home extends React.Component {
   render() {
@@ -12,21 +15,27 @@ class Home extends React.Component {
           <img className="logo" src={process.env.PUBLIC_URL + '/bokLogo.png'} alt="booklogo" />
           <h1 className="Title">ENJOY THE READ</h1>{/* <Title/> */}
           <p>
-            Randomly discover new books to love,<br/>
-            talented new authors
-            stories ... <br/>
-            Want to gain more visibility as an author ? <br/>Add your
-            creation to our database !
+            Randomly discover new books to love,
+            <br />
+            talented new authors stories ... <br />
+            Want to gain more visibility as an author ? <br />
+            Add your creation to our database !
           </p>
-          <button><NavLink to="/random-settings">LET'S GO</NavLink></button>
+          <button>
+            <NavLink to="/random-settings">LET'S GO</NavLink>
+          </button>
         </div>
 
-<div className="right">
-  <button> <NavLink to="/signin">LOG IN</NavLink></button>
-  <button><NavLink to="/signup">SIGN UP</NavLink></button>
-  <img src={process.env.PUBLIC_URL + '/illusBooks.png'} alt=""/>{/*mettre en bg parlx */}
-</div>
-
+        <div className="right">
+          <div className="buttons">
+            <NavLink to="/signin">
+              <Button secondary>SIGN IN</Button>
+            </NavLink>
+            <NavLink to="/signup"> <Button primary>SIGN UP</Button></NavLink>
+          </div>
+          <img src={process.env.PUBLIC_URL + '/illusBooks.png'} alt="" />
+          {/*mettre en bg parlx */}
+        </div>
       </div>
     );
   }

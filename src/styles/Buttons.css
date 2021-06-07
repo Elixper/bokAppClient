@@ -1,0 +1,35 @@
+@import url("./global.css");
+
+.Btn {
+    background-color: var(--purple);
+    width: max-content;
+    color: white;
+    padding: 20px 50px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .Btn:active {
+    transform: translate(1px, 1px);
+  }
+  
+  .Btn.btn-primary {
+    background: var(--purple);
+    color: white;
+  }
+  
+  .Btn.btn-primary:disabled {
+    background: rgb(190, 190, 190);
+  }
+  
+  .Btn.btn-secondary {
+    background: white;
+    color: var(--purple);
+    border: 1px solid var(--purple);
+  }
+  
