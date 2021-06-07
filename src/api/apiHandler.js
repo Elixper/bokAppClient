@@ -44,14 +44,14 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  addBokBook() {
+  addBokBook(data) {
     return service
       .post("/book/your-masterpiece", data)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  updateBokbook(bokId) {
+  updateBokbook(bokId, data) {
     return service
       .patch(`/book/change/${bokId}`, data)
       .then((res) => res.data)
