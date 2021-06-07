@@ -5,6 +5,7 @@ const Button = ({ children, disabled, handleClick, ...rest }) => {
   const styles = {
     primary: "primary",
     secondary: "secondary",
+    tertiary: "tertiary",
   };
 
   let selectedClass;

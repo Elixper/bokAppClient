@@ -1,11 +1,10 @@
 @import url("./global.css");
 
 .Btn {
-    background-color: var(--purple);
+   background-color: white;
     width: max-content;
-    color: white;
-    padding: 20px 50px;
-    font-size: 16px;
+    padding: 15px 50px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     border-radius: 40px;
@@ -22,10 +21,10 @@
     background: var(--purple);
     color: white;
   }
-  
+/*   
   .Btn.btn-primary:disabled {
     background: rgb(190, 190, 190);
-  }
+  } */
   
   .Btn.btn-secondary {
     background: white;
@@ -33,3 +32,8 @@
     border: 1px solid var(--purple);
   }
   
+  .Btn.btn-tertiary {
+    background-color: var(--main-bg-color);
+    color: var(--purple);
+    border: 1px solid var(--purple);
+  }
