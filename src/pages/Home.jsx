@@ -3,16 +3,14 @@ import { NavLink } from "react-router-dom";
 import Title from "../components/Base/Title";
 import "./../styles/global.css";
 import "./../styles/Home.css";
-import logo from "./../images/bokLogo.png";
-import books from "./../images/illusBooks.png";
 
 class Home extends React.Component {
   render() {
     return (
       <div className="container">
         <div className="left">
-          <img className="logo" src={logo} alt="book" />
-          <h1>ENJOY THE READ</h1>{/* <Title/> */}
+          <img className="logo" src={process.env.PUBLIC_URL + '/bokLogo.png'} alt="booklogo" />
+          <h1 className="Title">ENJOY THE READ</h1>{/* <Title/> */}
           <p>
             Randomly discover new books to love,<br/>
             talented new authors
@@ -26,9 +24,9 @@ class Home extends React.Component {
 <div className="right">
   <button> <NavLink to="/signin">LOG IN</NavLink></button>
   <button><NavLink to="/signup">SIGN UP</NavLink></button>
-  <img src={books} alt=""/>{/*mettre en bg parlx */}
+  <img src={process.env.PUBLIC_URL + '/illusBooks.png'} alt=""/>{/*mettre en bg parlx */}
 </div>
-        
+
       </div>
     );
   }

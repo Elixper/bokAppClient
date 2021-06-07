@@ -23,5 +23,11 @@ ul {
 
 /* ========= GENERAL RULES ========= */
 
+:root {
+  --main-bg-color: #d7edfd;
+  --purple: #6a75e0;
+}
 
-
+body {
+  background-color: var(--main-bg-color);
+}

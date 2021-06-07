@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
-import bokLogo from "../images/bokLogo.png"
 
 
 import "../styles/NavMain.css";
@@ -24,7 +23,7 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-        <img src={bokLogo} height={40} alt="boklogo"></img>
+        <img src={process.env.PUBLIC_URL + '/bokLogo.png'} height={40} alt="boklogo"></img>
       </NavLink>
       <ul className="nav-list">
         {context.isLoggedIn && (
