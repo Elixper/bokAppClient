@@ -1,12 +1,14 @@
 @import url("./global.css");
 
 .Btn {
-    background: var(--purple);
-    width: 100%;
+    background-color: var(--purple);
+    width: max-content;
     color: white;
-    padding: 16px 0;
+    padding: 20px 50px;
     font-size: 16px;
-    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    border-radius: 40px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -17,7 +19,7 @@
   }
   
   .Btn.btn-primary {
-    background: #5663ff;
+    background: var(--purple);
     color: white;
   }
   
@@ -27,7 +29,7 @@
   
   .Btn.btn-secondary {
     background: white;
-    color: #5663ff;
-    border: 1px solid #5663ff;
+    color: var(--purple);
+    border: 1px solid var(--purple);
   }
   

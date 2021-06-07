@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import "./../styles/global.css";
 import "./../styles/Home.css";
 import Button from "./../components/Base/Button"
-import logo from "./../images/bokLogo.png";
-import books from "./../images/illusBooks.png";
+// import logo from "./../images/bokLogo.png";
+// import books from "./../images/illusBooks.png";
 
 class Home extends React.Component {
   render() {
@@ -29,11 +29,11 @@ class Home extends React.Component {
         <div className="right">
           <div className="buttons">
             <NavLink to="/signin">
-              <Button secondary>Sign in</Button>
+              <Button secondary>SIGN IN</Button>
             </NavLink>
-            <NavLink to="/signup"> <Button primary>Sign Up</Button></NavLink>
+            <NavLink to="/signup"> <Button primary>SIGN UP</Button></NavLink>
           </div>
-          <img src={books} alt="" />
+          <img src={process.env.PUBLIC_URL + '/illusBooks.png'} alt="" />
           {/*mettre en bg parlx */}
         </div>
       </div>

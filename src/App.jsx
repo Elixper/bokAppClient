@@ -15,7 +15,7 @@ function App() {
   return (
    
     <div className="App">
-      <Test></Test>
+      {/* <Test></Test> */}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/dashboard" component={Dashboard} />
