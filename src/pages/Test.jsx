@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios';
 
 
-export default class Test extends Component {
-    state = {
-        test:[],
+export default class Test extends React.Component {
+  constructor(props){  
+  super(props)
+  
+  this.state = {
+        test: [],
     }
+  }
     componentDidMount(){
+      
         axios
-        .get('https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest')
+        .get('https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest' )
         .then((response) => {
+          console.log(response);
           this.setState({
-            books: response.data,
+            test: response.data.items,
           });
         })
         .catch((error) => {
@@ -22,12 +28,15 @@ export default class Test extends Component {
     render() {
         return (
             <div>
-        {this.state.books.map((booksFromArray,index) => {
-            console.log(this.state.books);
+               {/* <pre>{JSON.stringify(this.props, null, 4)}</pre> */}
+        {this.state.test.map((booksFromArray,index) => {
+            //console.log(this.state.test[0]);
+            console.log(booksFromArray);
           return  (
-          <p key={index}> books={booksFromArray.title}</p>
+          <p key={index}> toto : {booksFromArray.volumeInfo.title}</p>
           )
         })}
+
             </div>
         )
     }
