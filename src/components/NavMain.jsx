@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import Button from "../components/Base/Button"
+
 
 
 import "../styles/NavMain.css";
@@ -41,7 +43,7 @@ const NavMain = (props) => {
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin">LOG IN</NavLink>
+              <NavLink to="/signin">SIGN IN</NavLink>
             </li>
             <li>
               <NavLink to="/signup">SIGN UP</NavLink>
