@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import Button from "./Base/Button"
 
 
 import "../styles/NavMain.css";
@@ -23,12 +24,13 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-        <img src={process.env.PUBLIC_URL + '/bokLogo.png'} height={40} alt="boklogo"></img>
+        <img src={process.env.PUBLIC_URL + '/bokLogo.png'} height={30} alt="boklogo"></img>
       </NavLink>
       <ul className="nav-list">
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
+        
               <NavLink to="/profile">
                 {context.user && context.user.email}
               </NavLink>
@@ -41,12 +43,14 @@ const NavMain = (props) => {
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin">LOG IN</NavLink>
+            <Button cinq>
+              <NavLink to="/signin">LOG IN</NavLink></Button>  
             </li>
             <li>
-              <NavLink to="/signup">SIGN UP</NavLink>
-            </li>
-          </React.Fragment>
+            <Button cinq>
+              <NavLink to="/signup">SIGN UP</NavLink></Button>  
+            </li>        
+            </React.Fragment>
         )}
       </ul>
     </nav>
