@@ -50,6 +50,7 @@ export default class Test extends React.Component {
 
     return (
       <div>
+
         <button onClick={() => this.handleClick("history")}>History</button>
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
@@ -82,7 +83,9 @@ export default class Test extends React.Component {
               // <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
               <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
             )}
+          <img src={process.env.PUBLIC_URL + '/icons/next.svg'} alt="nextRandomIcon"/>
           </div>
+ 
         )}
       </div>
     );
