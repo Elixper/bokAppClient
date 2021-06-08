@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { withRouter, Redirect, NavLink } from "react-router-dom";
+// import { withRouter, Redirect, NavLink } from "react-router-dom";
 import NavMain from "../components/NavMain";
-import Container from "../components/Base/Container";
-import ButtonGrid from "../components/Items/ButtonGrid"
+// import Container from "../components/Base/Container";
+// import ButtonGrid from "../components/Items/ButtonGrid"
 // import apiHandler from "../../api/apiHandler";
 // import { withUser } from "../Auth/withUser";
 
@@ -25,7 +25,7 @@ class RandomSettings extends Component {
         <button>Fiction</button>
         <button>Crime</button>
 
-        <button><NavLink to="/your-suggestion">Let's go for a read</NavLink></button>
+        {/* <button><NavLink to="/your-suggestion">Let's go for a read</NavLink></button>
       <ButtonGrid></ButtonGrid>
       <Container>
         <img></img>
@@ -38,7 +38,7 @@ class RandomSettings extends Component {
         <button>Short Read : less than 100 pages</button>
         <button>200 pages and more</button>
         <button>400 pages and more</button>
-      </Container>
+      </Container> */}
 
 
         </div>
