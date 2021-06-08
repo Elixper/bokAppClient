@@ -11,7 +11,7 @@ export default class Test extends React.Component {
 
     this.state = {
       test: [],
-      urlSubject : '',
+      // urlSubject : '',
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -23,13 +23,29 @@ export default class Test extends React.Component {
   // }
 
   handleClick = (sujet) =>{
-    this.setState(prevState => {
-      console.log(prevState.sujet);
-      console.log(sujet);
-      return {
-        urlSubject: prevState.sujet
-      };
-    });
+    // this.setState(prevState => {
+    //   console.log(prevState.sujet);
+    //   console.log(sujet);
+    //   return {
+    //     urlSubject: prevState.sujet
+    //   };
+    // });
+    axios
+      .get(
+        // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
+        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}` )
+      .then((response) => {
+        // console.log(response);
+        this.setState({
+          test: response.data.items,
+          // urlSubject : response
+        });
+    
+        //console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   
@@ -38,13 +54,12 @@ export default class Test extends React.Component {
     axios
       .get(
         // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
-        `https://www.googleapis.com/books/v1/volumes?q=subject:${this.state.urlSubject}&filter=paid-ebooks&orderBy=newest&key=AIzaSyAkVkyu74n0QoSQrsOn_PVDH2A5v6-2tR4`
-      )
+        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}` )
       .then((response) => {
         // console.log(response);
         this.setState({
           test: response.data.items,
-          urlSubject : response
+          // urlSubject : response
         });
     
         //console.log(response);
@@ -53,6 +68,16 @@ export default class Test extends React.Component {
         console.log(error);
       });
   }
+
+//   componentDidUpdate(prevState) {
+//     const { urlSubject } = this.state;
+//     if(urlSubject !== prevState.urlSubject){
+//         console.log('update state!');
+//         // this.setState({ urlSubject});
+//     }
+
+// }
+ 
 // componentDidUpdate(prevProps, prevState){
 //  prevState.urlSubject
 // }
@@ -106,7 +131,8 @@ export default class Test extends React.Component {
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
         <button onClick={() => this.handleClick("art")}>Art</button>
-        <button  onClick={this.routeChange}>Art</button>
+        <button onClick={() => this.handleClick("history")}>History</button>
+       
 
         {booksFromArray && (
           <div>
@@ -127,8 +153,8 @@ export default class Test extends React.Component {
             <h1> {booksFromArray.volumeInfo.title}</h1>
             <p>{booksFromArray.volumeInfo.description} </p>
             <p>{booksFromArray.volumeInfo.categories} </p>
-            <p>{booksFromArray.saleInfo.listPrice.amount}</p>
-            <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
+            <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
+            <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
           </div>
         )}
       </div>

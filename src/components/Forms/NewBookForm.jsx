@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formDataUtils } from "../../formDataUtils";
+import {buildFormData} from "../../formDataUtils";
 import axios from "axios";
 import apiHandler from "../../api/apiHandler";
 
@@ -35,7 +35,7 @@ export default class NewBookForm extends Component {
     }
     const formData = new FormData();
     const { httpResponse, ...data } = this.state;
-    formDataUtils(formData, data);
+    buildFormData(formData, data);
     formData.append("image", this.bokBookCover.current.files[0]);
 
     apiHandler

@@ -9,8 +9,8 @@ import RandomResult from "./pages/RandomResult";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NewBookForm from "./components/Forms/NewBookForm";
 import Profile from "./pages/Profile";
-
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route exact path="/your-suggestion" component={RandomResult} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/add-your-masterpiece" component={NewBookForm} />
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>
