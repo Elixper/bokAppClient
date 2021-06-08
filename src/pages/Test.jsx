@@ -53,9 +53,9 @@ export default class Test extends React.Component {
         console.log(error);
       });
   }
-componentDidUpdate(prevProps, prevState){
- prevState.urlSubject
-}
+// componentDidUpdate(prevProps, prevState){
+//  prevState.urlSubject
+// }
   // componentDidUpdate(prevProps, prevState) {
   //   if (this.state.counter !== prevState.counter) {
   //     if (this.state.counter === 10) {

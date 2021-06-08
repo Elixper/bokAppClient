@@ -46,7 +46,6 @@ const NavMain = (props) => {
             <li>
             <Button cinq>
               <NavLink to="/signin">LOG IN</NavLink></Button>  
-              <NavLink to="/signin">SIGN IN</NavLink>
             </li>
             <li>
             <Button cinq>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { withRouter, Redirect, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NavMain from "../components/NavMain";
 import Button from "../components/Base/Button"
 // import Container from "../components/Base/Container";
@@ -68,7 +68,7 @@ class RandomSettings extends Component {
 
 
 
-
+</div>
 
     );
   }
