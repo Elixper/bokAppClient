@@ -1,84 +1,97 @@
 import React, { Component } from "react";
-import {NavLink,Switch, Route,Redirect} from "react-router-dom"
-import Button from "../components/Base/Button"
+import { NavLink, Switch, Route, Redirect } from "react-router-dom";
+import Button from "../components/Base/Button";
 import axios from "axios";
-import FavItem from "../components/ListItems/FavItem";
-import NewBookForm from "../components/Forms/NewBookForm";
-import Masterpieces from "../components/Masterpieces";
 
+export default class Test extends React.Component {
+  constructor(props) {
+    super(props);
 
-class RandomSettings extends Component {
-  state = {
-    genres: [],
-  };
+    this.state = {
+      test: [],
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-  handleClick = (sujet) =>{
-    // this.setState(prevState => {
-    //   console.log(prevState.sujet);
-    //   console.log(sujet);
-    //   return {
-    //     urlSubject: prevState.sujet
-    //   };
-    // });
+  handleClick = (sujet) => {
     axios
       .get(
-        // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
-        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}` )
+        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+      )
       .then((response) => {
-        // console.log(response);
         this.setState({
           test: response.data.items,
-          // urlSubject : response
         });
-    
-        //console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-
+  componentDidMount() {
+    axios
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+      )
+      .then((response) => {
+        this.setState({
+          test: response.data.items,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
-    // if (this.props.context.user) {
-    //   return <Redirect to="/" />;
-    // }
+    const booksFromArray = this.state.test
+      .sort(() => Math.random() - Math.random())
+      .find(() => true);
 
     return (
+      <div>
+        <button onClick={() => this.handleClick("history")}>History</button>
+        <button onClick={() => this.handleClick("fiction")}>Fiction</button>
+        <button onClick={() => this.handleClick("romance")}>Romance</button>
+        <button onClick={() => this.handleClick("art")}>Art</button>
+        <button onClick={() => this.handleClick("children")}>Children</button>
+        <img
+          src={process.env.PUBLIC_URL + "/GenreBooks.png"}
+          height={200}
+          alt="boklogo"
+        ></img>
 
-      
-     <div>
- {/* <NavMain/> */}
+        <img src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextRandomIcon" onClick={() => this.handleClickNext()}/>
 
-         <Button secondary onClick={() => this.handleClick("fiction")}>Fiction</Button>
-         <Button secondary onClick={() => this.handleClick("romance")}>Romance</Button>
-         <Button secondary onClick={() => this.handleClick("art")}>Art</Button>
-         <Button secondary onClick={() => this.handleClick("history")}>History</Button>
+        {booksFromArray && (
+          <div>
+            {booksFromArray.volumeInfo.imageLinks && (
+              <img
+                src={booksFromArray.volumeInfo.imageLinks.thumbnail}
+                alt="book cover"
+              />
+            )}
 
-    
+            {!booksFromArray.volumeInfo.imageLinks && (
+              <img
+                src={process.env.PUBLIC_URL + "/COVER.jpg"}
+                alt="book cover"
+              />
+            )}
 
-       <img src={process.env.PUBLIC_URL + '/GenreBooks.png'} height={200} alt="boklogo"></img>
-       
-        <Button><NavLink onClick={() => this.handleClick("art")} to="/random/art">Art</NavLink></Button>{" "}
-        <Button><NavLink to="/dashboard/create">Create a masterpiece</NavLink></Button>{" "}
-        <Button><NavLink to="/dashboard/my-masterpieces">My masterpieces</NavLink></Button>{" "}
-        
-        <Switch>
-          <Route exact path="/dashboard/my-list"component={FavItem}></Route>
-          <Route exact path="/dashboard/create"component={NewBookForm}></Route>
-          <Route exact path="/dashboard/my-masterpieces"component={Masterpieces}></Route>
-          <Redirect from="/dashboard" to="/dashboard/my-list"/>
-        </Switch>
-
-
-
-
-
-
-</div>
-
+            <h1> {booksFromArray.volumeInfo.title}</h1>
+            <p>{booksFromArray.volumeInfo.description} </p>
+            <p>{booksFromArray.volumeInfo.categories} </p>
+            {!booksFromArray.saleInfo && (
+              // <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
+              <p>{booksFromArray.saleInfo.listPrice.amount}</p>
+            )}
+            {!booksFromArray.saleInfo && (
+              // <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
+              <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
+            )}
+          </div>
+        )}
+      </div>
     );
   }
 }
-
-export default RandomSettings;
