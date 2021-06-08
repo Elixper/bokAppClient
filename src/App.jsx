@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-// import NavMain from "./components/NavMain";
+import NavMain from "./components/NavMain";
 import Test from "./pages/Test";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -16,6 +16,7 @@ function App() {
   return (
    
     <div className="App">
+      <NavMain/>
       <Switch>
       <Route exact path="/test" component={Test} />
         <Route exact path="/" component={Home} />

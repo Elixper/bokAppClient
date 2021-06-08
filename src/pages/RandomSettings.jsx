@@ -52,7 +52,7 @@ class RandomSettings extends Component {
 
       
      <div>
- <NavMain/>
+ {/* <NavMain/> */}
 
          <Button secondary onClick={() => this.handleClick("fiction")}>Fiction</Button>
          <Button secondary onClick={() => this.handleClick("romance")}>Romance</Button>
@@ -68,12 +68,12 @@ class RandomSettings extends Component {
        <Button secondary>Fiction</Button>
        <Button secondary>Crime</Button>
        </div> */}
-       {/* <Button secondary>NEW AUTHORS ONLY</Button>
+        {/* <Button secondary>NEW AUTHORS ONLY</Button>
        <Button secondary>WELL-KNOWN AUTHORS</Button>
-       <Button secondary>BOTH OF THEM</Button>
+       <Button secondary>BOTH OF THEM</Button> */}
 
 
-       <Button secondary>Short Read : less than 100 pages</Button>
+      {/* <Button secondary>Short Read : less than 100 pages</Button>
        <Button secondary>200 pages and more</Button>
        <Button secondary>400 pages and more</Button> */}
 

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import Button from "../components/Base/Button";
+import NavMain from "../components/NavMain";
 
 // import { NavLink } from "react-router-dom";
 // import Button from "./../components/Base/Button";
@@ -135,7 +137,8 @@ export default class RandomResult extends React.Component {
         <button onClick={() => this.handleClick("art")}>Art</button>
         <button onClick={() => this.handleClick("history")}>History</button> */}
        
-
+{/* <NavMain/> */}
+<Button>Random settings</Button>
         {booksFromArray && (
           <div>
             {booksFromArray.volumeInfo.imageLinks && (
@@ -159,6 +162,8 @@ export default class RandomResult extends React.Component {
             <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
           </div>
         )}
+        <Button>Next suggestion</Button>
+        <Button>Add to my list</Button>
       </div>
     );
   }

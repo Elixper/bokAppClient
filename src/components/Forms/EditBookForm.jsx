@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
-import { formDataUtils } from "../../formDataUtils";
+import { buildFormData } from "../../formDataUtils";
 
 export default class EditBookForm extends Component {
   state = {
@@ -18,7 +18,7 @@ export default class EditBookForm extends Component {
     evt.preventDefault();
     const formData = new FormData();
     const { httpResponse, ...data } = this.state;
-    formDataUtils(formData, data);
+    buildFormData(formData, data);
 
     apiHandler
       .updateBokbook(this.props.bokBook.id, formData)
@@ -138,7 +138,7 @@ export default class EditBookForm extends Component {
             />
           </div>
 
-          {/* <button>Submit!!</button> */}
+          <button>Submit!!</button>
         </form>
       </div>
     );

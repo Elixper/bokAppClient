@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
- class FavItem extends Component {
+ class Masterpieces extends Component {
     render() {
         return (
             <div>
-                <h1>List of google books liked</h1>
+                <h1>List of created books</h1>
             </div>
         )
     }
 }
 
-export default FavItem
+export default Masterpieces
