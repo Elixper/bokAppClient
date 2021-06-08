@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {buildFormData} from "../../formDataUtils";
-import axios from "axios";
+// import axios from "axios";
 import apiHandler from "../../api/apiHandler";
 
 const bokState = {
@@ -86,8 +86,8 @@ export default class NewBookForm extends Component {
           </div>
           <div className="pseudo">
             <label htmlFor="pseudoAuthor">
-              {" "}
-              <em>"Nom de Plume"</em>{" "}
+            
+              <em>"Nom de Plume"</em>
             </label>
             <input
               id="pseudoAuthor"
@@ -100,8 +100,8 @@ export default class NewBookForm extends Component {
 
           <div className="description">
             <label htmlFor="description">
-              {" "}
-              A few words about your chef d'oeuvre{" "}
+            
+              A few words about your chef d'oeuvre
             </label>
             <input
               id="description"
@@ -155,7 +155,7 @@ export default class NewBookForm extends Component {
             />
           </div>
 
-          {/* <button>Submit!!</button> */}
+          <button>Submit!!</button>
         </form>
       </div>
     );
