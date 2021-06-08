@@ -10,7 +10,7 @@ body {
 
 }
 .logo {
-  width: 500px;
+  width: 520px;
   margin-bottom: 40px;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 
-.ButtonGrid {
+/* .ButtonGrid {
   background-color: blueviolet;
   border: 1px solid var(--purple);
-}
+} */

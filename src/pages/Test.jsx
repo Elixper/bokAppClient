@@ -129,11 +129,11 @@ export default class Test extends React.Component {
     return (
       <div>
       {/* peut_etre un link  a la place de button */}
-        <button onClick={() => this.handleClick("history")}>History</button>
+        {/* <button onClick={() => this.handleClick("history")}>History</button>
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
         <button onClick={() => this.handleClick("art")}>Art</button>
-        <button onClick={() => this.handleClick("history")}>History</button>
+        <button onClick={() => this.handleClick("history")}>History</button> */}
        
 
         {booksFromArray && (
