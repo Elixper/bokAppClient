@@ -20,10 +20,6 @@ class NavDashboard extends Component {
   
         
        <div>
-<Button>My list</Button> {/*//on click => state components de Dashbord changent de state aka true/false*/}
-
-<Button>Create a masterpiece</Button>
-<Button>My masterpieces</Button>
 
 <FavItems/>
 <NewBookForm/>
