@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {buildFormData} from "../../formDataUtils";
+import { buildFormData } from "../../formDataUtils";
 // import axios from "axios";
 import apiHandler from "../../api/apiHandler";
 
@@ -9,7 +9,9 @@ const bokState = {
   description: "",
   genre: "",
   link: "",
-  isSubmitted: false,
+  httpResponse: null,
+  error: null,
+  // isSubmitted: false,
 };
 
 export default class NewBookForm extends Component {
@@ -19,7 +21,9 @@ export default class NewBookForm extends Component {
 
   handleChange = (event) => {
     const value = event.target.value;
-    const key = event.target.key;
+    console.log(value);
+    const key = event.target.id;
+    console.log(key);
     this.setState({ [key]: value });
   };
 
@@ -31,9 +35,11 @@ export default class NewBookForm extends Component {
           this.setState({ error: null });
         }, 1000);
       });
+      console.log("cou");
       return;
     }
     const formData = new FormData();
+    console.log(formData);
     const { httpResponse, ...data } = this.state;
     buildFormData(formData, data);
     formData.append("image", this.bokBookCover.current.files[0]);
@@ -41,21 +47,24 @@ export default class NewBookForm extends Component {
     apiHandler
       .addBokBook(formData)
       .then((data) => {
-        this.props.addBokBook(data);
-
+        console.log(data);
+        //this.props.addBokBook(data);
         this.setState({
+          
           ...bokState,
           httpResponse: {
             status: "success",
             message: "Masterpiece successfully added.",
           },
-          isSubmitted: true,
+          // isSubmitted: true,
         });
+        console.log('submit');
         this.timeOut = setTimeout(() => {
           this.setState({ httpResponse: null });
         }, 1000);
       })
       .catch((error) => {
+        console.log(error);
         this.setState({
           httpResponse: {
             status: "failure",
@@ -86,7 +95,6 @@ export default class NewBookForm extends Component {
           </div>
           <div className="pseudo">
             <label htmlFor="pseudoAuthor">
-            
               <em>"Nom de Plume"</em>
             </label>
             <input
@@ -100,7 +108,6 @@ export default class NewBookForm extends Component {
 
           <div className="description">
             <label htmlFor="description">
-            
               A few words about your chef d'oeuvre
             </label>
             <input
@@ -113,7 +120,7 @@ export default class NewBookForm extends Component {
 
           <div className="genre">
             <label htmlFor="genre">Genre</label>
-            <select name="genre" id="genre">
+            <select onChange={this.handleChange} name="genre" id="genre">
               <option value="" disabled>
                 Select your genre
               </option>
@@ -137,6 +144,7 @@ export default class NewBookForm extends Component {
           <div className="image">
             <label htmlFor="image">Upload image</label>
             <input
+              onChange={this.handleChange}
               id="image"
               type="file"
               name="image"
@@ -146,6 +154,7 @@ export default class NewBookForm extends Component {
           <div className="link">
             <label htmlFor="link"> Link of your book</label>
             <input
+              onChange={this.handleChange}
               id="link"
               name="link"
               type="url"
