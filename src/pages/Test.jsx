@@ -15,6 +15,7 @@ export default class Test extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+  
 
   // handleClick(sujet) {
   //   // Changing state => pass param => the
@@ -38,7 +39,7 @@ export default class Test extends React.Component {
     axios
       .get(
         // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
-        `https://www.googleapis.com/books/v1/volumes?q=subject:${this.state.urlSubject}&filter=paid-ebooks&orderBy=newest&key=AIzaSyAkVkyu74n0QoSQrsOn_PVDH2A5v6-2tR4`
+        `https://www.googleapis.com/books/v1/volumes?q=subject:${this.state.urlSubject}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
         // console.log(response);
@@ -53,8 +54,11 @@ export default class Test extends React.Component {
         console.log(error);
       });
   }
-// componentDidUpdate(prevProps, prevState){
-//  prevState.urlSubject
+// componentDidUpdate(prevState){
+//  const {urlsubject} =this.state;
+// if (urlsubject!==prevState.urlSubject){
+//    console.log('toto',prevState.urlSubject);
+// }
 // }
   // componentDidUpdate(prevProps, prevState) {
   //   if (this.state.counter !== prevState.counter) {
@@ -103,10 +107,11 @@ export default class Test extends React.Component {
     return (
       <div>
       {/* peut_etre un link  a la place de button */}
+        <button onClick={() => this.handleClick("history")}>History</button>
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
         <button onClick={() => this.handleClick("art")}>Art</button>
-        <button  onClick={this.routeChange}>Art</button>
+   
 
         {booksFromArray && (
           <div>
@@ -127,7 +132,7 @@ export default class Test extends React.Component {
             <h1> {booksFromArray.volumeInfo.title}</h1>
             <p>{booksFromArray.volumeInfo.description} </p>
             <p>{booksFromArray.volumeInfo.categories} </p>
-            <p>{booksFromArray.saleInfo.listPrice.amount}</p>
+            <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
             <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
           </div>
         )}
