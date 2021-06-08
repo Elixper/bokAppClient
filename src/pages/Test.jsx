@@ -4,7 +4,6 @@ import axios from "axios";
 // import { NavLink } from "react-router-dom";
 // import Button from "./../components/Base/Button";
 
-
 export default class Test extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,6 @@ export default class Test extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  
 
   // handleClick(sujet) {
   //   // Changing state => pass param => the
@@ -23,7 +21,7 @@ export default class Test extends React.Component {
   //  return {urlSubject: prevState.sujet}
   // }
 
-  handleClick = (sujet) =>{
+  handleClick = (sujet) => {
     // this.setState(prevState => {
     //   console.log(prevState.sujet);
     //   console.log(sujet);
@@ -34,14 +32,15 @@ export default class Test extends React.Component {
     axios
       .get(
         // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
-        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}` )
+        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+      )
       .then((response) => {
         // console.log(response);
         this.setState({
           test: response.data.items,
           // urlSubject : response
         });
-    
+
         //console.log(response);
       })
       .catch((error) => {
@@ -49,20 +48,20 @@ export default class Test extends React.Component {
       });
   };
 
-  
   componentDidMount() {
     //   const wesh=[Art,Fiction,Romance];
     axios
       .get(
         // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
-        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}` )
+        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+      )
       .then((response) => {
         // console.log(response);
         this.setState({
           test: response.data.items,
           // urlSubject : response
         });
-    
+
         //console.log(response);
       })
       .catch((error) => {
@@ -70,18 +69,18 @@ export default class Test extends React.Component {
       });
   }
 
-//   componentDidUpdate(prevState) {
-//     const { urlSubject } = this.state;
-//     if(urlSubject !== prevState.urlSubject){
-//         console.log('update state!');
-//         // this.setState({ urlSubject});
-//     }
+  //   componentDidUpdate(prevState) {
+  //     const { urlSubject } = this.state;
+  //     if(urlSubject !== prevState.urlSubject){
+  //         console.log('update state!');
+  //         // this.setState({ urlSubject});
+  //     }
 
-// }
- 
-// componentDidUpdate(prevProps, prevState){
-//  prevState.urlSubject
-// }
+  // }
+
+  // componentDidUpdate(prevProps, prevState){
+  //  prevState.urlSubject
+  // }
   // componentDidUpdate(prevProps, prevState) {
   //   if (this.state.counter !== prevState.counter) {
   //     if (this.state.counter === 10) {
@@ -128,13 +127,12 @@ export default class Test extends React.Component {
 
     return (
       <div>
-      {/* peut_etre un link  a la place de button */}
+        {/* peut_etre un link  a la place de button */}
         <button onClick={() => this.handleClick("history")}>History</button>
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
         <button onClick={() => this.handleClick("art")}>Art</button>
         <button onClick={() => this.handleClick("history")}>History</button>
-       
 
         {booksFromArray && (
           <div>
@@ -155,8 +153,14 @@ export default class Test extends React.Component {
             <h1> {booksFromArray.volumeInfo.title}</h1>
             <p>{booksFromArray.volumeInfo.description} </p>
             <p>{booksFromArray.volumeInfo.categories} </p>
-            <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
-            <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
+            {!booksFromArray.saleInfo && (
+              // <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
+              <p>{booksFromArray.saleInfo.listPrice.amount}</p>
+            )}
+            {!booksFromArray.saleInfo && (
+              // <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
+              <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
+            )}
           </div>
         )}
       </div>
