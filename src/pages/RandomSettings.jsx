@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import NavMain from "../components/NavMain";
+import {NavLink,Switch, Route,Redirect} from "react-router-dom"
 import Button from "../components/Base/Button"
 import axios from "axios";
-// import Container from "../components/Base/Container";
-// import ButtonGrid from "../components/Items/ButtonGrid";
+import FavItem from "../components/ListItems/FavItem";
+import NewBookForm from "../components/Forms/NewBookForm";
+import Masterpieces from "../components/Masterpieces";
 
-// import Container from "../components/Base/Container";
-// import ButtonGrid from "../components/Items/ButtonGrid"
-// import apiHandler from "../../api/apiHandler";
-// import { withUser } from "../Auth/withUser";
 
 class RandomSettings extends Component {
   state = {
@@ -98,6 +94,17 @@ class RandomSettings extends Component {
         <button>400 pages and more</button>
       </Container> */}
        
+       
+        <Button><NavLink onClick={() => this.handleClick("art")} to="/random/art">Art</NavLink></Button>{" "}
+        <Button><NavLink to="/dashboard/create">Create a masterpiece</NavLink></Button>{" "}
+        <Button><NavLink to="/dashboard/my-masterpieces">My masterpieces</NavLink></Button>{" "}
+        
+        <Switch>
+          <Route exact path="/dashboard/my-list"component={FavItem}></Route>
+          <Route exact path="/dashboard/create"component={NewBookForm}></Route>
+          <Route exact path="/dashboard/my-masterpieces"component={Masterpieces}></Route>
+          <Redirect from="/dashboard" to="/dashboard/my-list"/>
+        </Switch>
 
 
 

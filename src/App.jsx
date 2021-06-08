@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/random-settings" component={RandomSettings} />
-        <Route exact path="/your-random" component={RandomResult} />
+        {/* <Route exact path="/your-random" component={RandomResult} /> */}
         <Route exact path="/your-suggestion" component={RandomResult} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
