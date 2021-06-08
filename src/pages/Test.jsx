@@ -13,15 +13,24 @@ export default class Test extends React.Component {
       test: [],
       urlSubject : '',
     };
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(sujet){
-    
-    // Changing state => pass param => the 
-    this.setState({urlSubject : sujet})
-    console.log(sujet)
-  }
+  // handleClick(sujet) {
+  //   // Changing state => pass param => the
+  //   console.log(sujet);
+  //  return {urlSubject: prevState.sujet}
+  // }
+
+  handleClick = (sujet) =>{
+    this.setState(prevState => {
+      console.log(prevState.sujet);
+      console.log(sujet);
+      return {
+        urlSubject: prevState.sujet
+      };
+    });
+  };
 
   
   componentDidMount() {
@@ -35,79 +44,94 @@ export default class Test extends React.Component {
         // console.log(response);
         this.setState({
           test: response.data.items,
+          urlSubject : response
         });
-        console.log(response);
+    
+        //console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
   }
+componentDidUpdate(prevProps, prevState){
+ prevState.urlSubject
+}
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.counter !== prevState.counter) {
+  //     if (this.state.counter === 10) {
+  //       setTimeout(() => {
+  //         this.setState({ shoes: ["Requin", ...this.state.shoes] });
+  //       }, 3000);
+  //     }
+  //   }
+  // }
+  //   render() {
+  //     return (
+  //       <div>
+  //         {/* <pre>{JSON.stringify(this.props, null, 4)}</pre> */}
+  //         {this.state.test.map((booksFromArray, index) => {
+  //           //console.log(this.state.test[0]);
+  //           booksFromArray.volumeInfo.imageLinks && console.log(booksFromArray.volumeInfo.imageLinks);
+  //           return (
+  //             <div key={index}>
 
- 
-//   render() {
-//     return (
-//       <div>
-//         {/* <pre>{JSON.stringify(this.props, null, 4)}</pre> */}
-//         {this.state.test.map((booksFromArray, index) => {
-//           //console.log(this.state.test[0]);
-//           booksFromArray.volumeInfo.imageLinks && console.log(booksFromArray.volumeInfo.imageLinks);
-//           return (
-//             <div key={index}>
-              
-//               {booksFromArray.volumeInfo.imageLinks && (<img
-//                 src={booksFromArray.volumeInfo.imageLinks.thumbnail}
-//                 alt="book cover"
-//               />)} 
-              
-//               {!booksFromArray.volumeInfo.imageLinks && (<img
-//                 src={process.env.PUBLIC_URL + '/COVER.jpg'}
-//                 alt="book cover"
-//               />)} 
-    
-//               <h1> {booksFromArray.volumeInfo.title}</h1>
-//               <p>{booksFromArray.volumeInfo.description} </p>
-//             </div>
-//             );
-//         })}
-//       </div>
-//     );
-//   }
-// }
+  //               {booksFromArray.volumeInfo.imageLinks && (<img
+  //                 src={booksFromArray.volumeInfo.imageLinks.thumbnail}
+  //                 alt="book cover"
+  //               />)}
 
-render() {
-  const booksFromArray = this.state.test.sort(() => Math.random() - Math.random())
-                                     .find(() => true);
+  //               {!booksFromArray.volumeInfo.imageLinks && (<img
+  //                 src={process.env.PUBLIC_URL + '/COVER.jpg'}
+  //                 alt="book cover"
+  //               />)}
 
-  return (
+  //               <h1> {booksFromArray.volumeInfo.title}</h1>
+  //               <p>{booksFromArray.volumeInfo.description} </p>
+  //             </div>
+  //             );
+  //         })}
+  //       </div>
+  //     );
+  //   }
+  // }
 
+  render() {
+    const booksFromArray = this.state.test
+      .sort(() => Math.random() - Math.random())
+      .find(() => true);
+
+    return (
       <div>
-        {/* <NavLink to="/signin"> <Button secondary>FICTION</Button></NavLink> */}
-
+      {/* peut_etre un link  a la place de button */}
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
         <button onClick={() => this.handleClick("art")}>Art</button>
         <button  onClick={this.routeChange}>Art</button>
 
-          {booksFromArray &&
-             <div>
-              
-              {booksFromArray.volumeInfo.imageLinks && (<img
+        {booksFromArray && (
+          <div>
+            {booksFromArray.volumeInfo.imageLinks && (
+              <img
                 src={booksFromArray.volumeInfo.imageLinks.thumbnail}
                 alt="book cover"
-              />)} 
-              
-              {!booksFromArray.volumeInfo.imageLinks && (<img
-                src={process.env.PUBLIC_URL + '/COVER.jpg'}
-                alt="book cover"
-              />)} 
-    
-              <h1> {booksFromArray.volumeInfo.title}</h1>
-              <p>{booksFromArray.volumeInfo.description} </p>
-              <p>{booksFromArray.volumeInfo.categories} </p>
-            </div>
-          }
-      </div>
-  );
-};
-}
+              />
+            )}
 
+            {!booksFromArray.volumeInfo.imageLinks && (
+              <img
+                src={process.env.PUBLIC_URL + "/COVER.jpg"}
+                alt="book cover"
+              />
+            )}
+
+            <h1> {booksFromArray.volumeInfo.title}</h1>
+            <p>{booksFromArray.volumeInfo.description} </p>
+            <p>{booksFromArray.volumeInfo.categories} </p>
+            <p>{booksFromArray.saleInfo.listPrice.amount}</p>
+            <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
+          </div>
+        )}
+      </div>
+    );
+  }
+}

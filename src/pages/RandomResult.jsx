@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { withRouter, Redirect, NavLink } from "react-router-dom";
+// import { withRouter, Redirect, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NavMain from "../components/NavMain";
 
 // import apiHandler from "../../api/apiHandler";
