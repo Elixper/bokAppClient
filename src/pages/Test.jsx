@@ -1,6 +1,10 @@
 import React from "react";
 import axios from "axios";
 
+// import { NavLink } from "react-router-dom";
+// import Button from "./../components/Base/Button";
+
+
 export default class Test extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +32,9 @@ export default class Test extends React.Component {
     });
   };
 
+  
   componentDidMount() {
+    //   const wesh=[Art,Fiction,Romance];
     axios
       .get(
         // `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest`
@@ -100,6 +106,7 @@ componentDidUpdate(prevProps, prevState){
         <button onClick={() => this.handleClick("fiction")}>Fiction</button>
         <button onClick={() => this.handleClick("romance")}>Romance</button>
         <button onClick={() => this.handleClick("art")}>Art</button>
+        <button  onClick={this.routeChange}>Art</button>
 
         {booksFromArray && (
           <div>

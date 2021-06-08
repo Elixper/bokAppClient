@@ -1,7 +1,7 @@
 @import url("./global.css");
 
 .Btn {
-   background-color: white;
+    background-color: white;
     width: max-content;
     padding: 10px 45px;
     font-size: 14px;
@@ -47,5 +47,10 @@
   }
 
   .Btn.btn-cinq:hover{ 
-    border: 1px solid rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0);}
+  
+  .Btn.btn-quaternary {
+    background: var(--purple);
+    color: white;
+    border:none;
   }

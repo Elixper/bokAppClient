@@ -31,3 +31,8 @@ body {
   margin-top: 170px;
 }
 
+
+.ButtonGrid {
+  background-color: blueviolet;
+  border: 1px solid var(--purple);
+}

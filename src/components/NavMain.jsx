@@ -2,7 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
-import Button from "./Base/Button"
+import Button from "../components/Base/Button"
+
 
 
 import "../styles/NavMain.css";
@@ -45,6 +46,7 @@ const NavMain = (props) => {
             <li>
             <Button cinq>
               <NavLink to="/signin">LOG IN</NavLink></Button>  
+              <NavLink to="/signin">SIGN IN</NavLink>
             </li>
             <li>
             <Button cinq>
