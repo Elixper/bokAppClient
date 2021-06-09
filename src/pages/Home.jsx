@@ -1,11 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import Title from "../components/Base/Title";
 import "./../styles/global.css";
 import "./../styles/Home.css";
 import Button from "./../components/Base/Button"
-// import logo from "./../images/bokLogo.png";
-// import books from "./../images/illusBooks.png";
 
 class Home extends React.Component {
   render() {
@@ -13,8 +10,8 @@ class Home extends React.Component {
       <div className="container">
         <div className="left">
           <img className="logo" src={process.env.PUBLIC_URL + '/bokLogo.png'} alt="booklogo" />
-          <h1 className="Title">ENJOY THE READ</h1>{/* <Title/> */}
-          <p>
+          <h1 className="purpletitle">ENJOY THE READ</h1>
+          <p className="interlignSmall spaceButt">
             Randomly discover new books to love,
             <br />
             talented new authors stories ... <br />
@@ -23,20 +20,21 @@ class Home extends React.Component {
           </p>
           
          
-            <NavLink to="/random-settings"><Button tertiary>LET'S GO</Button></NavLink>
+            <NavLink to="/random-settings"><Button primary>LET'S GO</Button></NavLink>
           
         </div>
 
         <div className="right">
           <div className="buttons"> 
-          <NavLink to="/signup"> <Button primary>SIGN UP</Button></NavLink>
+          <NavLink to="/signup"> <Button tertiary>SIGN UP</Button></NavLink>
             <NavLink to="/signin">
-              <Button secondary>SIGN IN</Button>
+              <Button tertiary>LOG IN</Button>
             </NavLink>
            
           </div>
-          <img src={process.env.PUBLIC_URL + '/illusBooks.png'} alt="" />
+          <img className="bookHome" src={process.env.PUBLIC_URL + '/illusBooks.png'} alt="" />
           {/*mettre en bg parlx */}
+          
         </div>
       </div>
     );

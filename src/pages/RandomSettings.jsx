@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 import Button from "../components/Base/Button";
 import axios from "axios";
+import NavMain from "../components/NavMain";
+import "./../styles/Random.css";
+import "./../styles/global.css";
 
 export default class Test extends React.Component {
   constructor(props) {
@@ -49,48 +52,68 @@ export default class Test extends React.Component {
 
     return (
       <div>
-        <button onClick={() => this.handleClick("history")}>History</button>
-        <button onClick={() => this.handleClick("fiction")}>Fiction</button>
-        <button onClick={() => this.handleClick("romance")}>Romance</button>
-        <button onClick={() => this.handleClick("art")}>Art</button>
-        <button onClick={() => this.handleClick("children")}>Children</button>
-        <img
-          src={process.env.PUBLIC_URL + "/GenreBooks.png"}
-          height={200}
-          alt="boklogo"
-        ></img>
-
-        <img src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextRandomIcon" onClick={() => this.handleClickNext()}/>
-
-        {booksFromArray && (
-          <div>
-            {booksFromArray.volumeInfo.imageLinks && (
-              <img
-                src={booksFromArray.volumeInfo.imageLinks.thumbnail}
-                alt="book cover"
-              />
-            )}
-
-            {!booksFromArray.volumeInfo.imageLinks && (
-              <img
-                src={process.env.PUBLIC_URL + "/COVER.jpg"}
-                alt="book cover"
-              />
-            )}
-
-            <h1> {booksFromArray.volumeInfo.title}</h1>
-            <p>{booksFromArray.volumeInfo.description} </p>
-            <p>{booksFromArray.volumeInfo.categories} </p>
-            {!booksFromArray.saleInfo && (
-              // <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
-              <p>{booksFromArray.saleInfo.listPrice.amount}</p>
-            )}
-            {!booksFromArray.saleInfo && (
-              // <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
-              <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
-            )}
+        <NavMain />
+        <div className="all">
+          <div className="choices">
+            <Button tertiary> <div className="butt" onClick={() => this.handleClick("history")}>
+              History</div>
+            </Button>
+            <Button tertiary> <div className="butt" onClick={() => this.handleClick("fiction")}>
+              Fiction</div>
+            </Button>
+            <Button tertiary> <div className="butt" onClick={() => this.handleClick("romance")}>
+              Romance</div>
+            </Button>
+            <Button tertiary> <div className="butt" onClick={() => this.handleClick("art")}>
+              Art</div>
+            </Button>
+            <Button tertiary> <div className="butt" onClick={() => this.handleClick("children")}>
+              Children</div>
+            </Button>
           </div>
-        )}
+
+          {booksFromArray && (
+            <div className="bigcontainer">
+              {booksFromArray.volumeInfo.imageLinks && (
+                <img
+                  className="cover"
+                  src={booksFromArray.volumeInfo.imageLinks.thumbnail}
+                  alt="book cover"
+                />
+              )}
+
+              {!booksFromArray.volumeInfo.imageLinks && (
+                <img
+                  className="cover"
+                  src={process.env.PUBLIC_URL + "/COVER.jpg"}
+                  alt="book cover"
+                />
+              )}
+              <div className="infosright">
+                <h1> {booksFromArray.volumeInfo.title}</h1>
+                <h2> {booksFromArray.volumeInfo.authors}</h2>
+                <p className="summary">
+                  {booksFromArray.volumeInfo.description}{" "}
+                </p>
+                <p>{booksFromArray.volumeInfo.categories} </p>
+                {!booksFromArray.saleInfo && (
+                  // <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
+                  <p>{booksFromArray.saleInfo.listPrice.amount}</p>
+                )}
+                {!booksFromArray.saleInfo && (
+                  // <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
+                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
+                )}
+                </div>
+                <img
+                  src={process.env.PUBLIC_URL + "/icons/next.svg"}
+                  alt="nextRandomIcon"
+                  onClick={() => this.handleClickNext()}
+                />
+              
+            </div>
+          )}
+        </div>
       </div>
     );
   }

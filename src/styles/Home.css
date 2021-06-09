@@ -1,38 +1,47 @@
 @import url("./global.css");
 
-:root {
-  --main-bg-color: #d7edfd;
-  --purple: #6a75e0;
-}
 
-body {
-  background-color: var(--main-bg-color);
 
-}
 .logo {
-  width: 520px;
+  width: 400px;
   margin-bottom: 40px;
 }
 
 .container {
+  background-color: var(--main-bg-color);
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   justify-content: space-between;
+  height: 100vh;
 }
 
 
 .left {
-  margin-left: 170px;
+  font-family: "poppins";
+  margin-left: 10vw;
   margin-top: 130px;
   color: var(--purple);
 }
 
 .right {
-  margin-top: 170px;
+  margin-top: 40px;
+  flex-flow: column;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
 }
 
 
-/* .ButtonGrid {
-  background-color: blueviolet;
-  border: 1px solid var(--purple);
-} */
+.spaceButt{
+  margin-bottom: 30px;
+}
+
+.bookHome{
+  width: 650px;
+}

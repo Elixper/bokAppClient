@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
+import "./../../styles/global.css";
+
 
 class FormSignup extends Component {
   state = {
@@ -36,7 +38,7 @@ class FormSignup extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="containerform" onSubmit={this.handleSubmit}>
         <p>AJOUTER PHOTO ICI</p>
          <label htmlFor="username">User name</label>
         <input
@@ -70,7 +72,7 @@ class FormSignup extends Component {
           id="biography"
           name="biography"
         />
-        <button>Submit</button>
+        <button className="submit">Submit</button>
         
       </form>
       
