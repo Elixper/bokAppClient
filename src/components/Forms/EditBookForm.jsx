@@ -23,7 +23,7 @@ export default class EditBookForm extends Component {
     apiHandler
       .updateBokbook(this.props.bokBook.id, formData)
       .then((data) => {
-        this.props.totoCase(data);
+        console.log(data);
         this.setState({
           httpResponse: {
             status: "success",

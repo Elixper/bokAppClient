@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { buildFormData } from "../../formDataUtils";
-// import axios from "axios";
 import apiHandler from "../../api/apiHandler";
 
 const bokState = {
@@ -11,7 +10,7 @@ const bokState = {
   link: "",
   httpResponse: null,
   error: null,
-  // isSubmitted: false,
+
 };
 
 export default class NewBookForm extends Component {
@@ -48,7 +47,6 @@ export default class NewBookForm extends Component {
       .addBokBook(formData)
       .then((data) => {
         console.log(data);
-        //this.props.addBokBook(data);
         this.setState({
           
           ...bokState,
