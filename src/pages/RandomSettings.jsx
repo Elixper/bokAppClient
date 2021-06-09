@@ -39,7 +39,7 @@ export default class Test extends React.Component {
   componentDidMount(){
     service
       //populate googleApi data
-      .get("/api/bookFromData")
+      .get("/bookFromData")
       .then((result) => {
         console.log(result.data);
         this.setState({
@@ -50,8 +50,8 @@ export default class Test extends React.Component {
     // ga("send", "event", "Book List", "Add to favorites");
   }
   handleSave = (data) => {
-    axios
-    .post("/api/bookFromData/add-list", {}, {withCredentials: true})
+   service
+    .post("/bookFromData/add-list", {}, {withCredentials: true})
     .then((result) => {
         console.log(result.data);
         this.setState({
