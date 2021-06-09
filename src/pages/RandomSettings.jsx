@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Switch, Route, Redirect } from "react-router-dom";
+import { Link, NavLink, Switch, Route, Redirect } from "react-router-dom";
 import Button from "../components/Base/Button";
 import axios from "axios";
 import NavMain from "../components/NavMain";
@@ -14,7 +14,8 @@ export default class Test extends React.Component {
       test: [],
       sujet:this.props.sujet,
     };
-    this.handleClick = this.handleClick.bind(this);
+
+    
   }
 
   handleClick = (sujet) => {
@@ -33,12 +34,17 @@ export default class Test extends React.Component {
       });
   };
 
+  handleFav = () => {
+
+  }
+
   componentDidMount() {
     axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
+        // console.log(response.data)
         this.setState({
           test: response.data.items,
         });
@@ -47,6 +53,11 @@ export default class Test extends React.Component {
         console.log(error);
       });
   }
+
+componentWillUnmount(){
+  this.axiosCancelSource.cancel('Axios request canceled.')
+}
+
   render() {
     const booksFromArray = this.state.test
       .sort(() => Math.random() - Math.random())
@@ -94,18 +105,21 @@ export default class Test extends React.Component {
               <div className="infosright">
                 <h1> {booksFromArray.volumeInfo.title}</h1>
                 <h2> {booksFromArray.volumeInfo.authors}</h2>
+                <p> {booksFromArray.volumeInfo.publishedDate}</p>
+                <p> {booksFromArray.volumeInfo.pageCount} pages</p>
                 <p className="summary">
                   {booksFromArray.volumeInfo.description}{" "}
                 </p>
                 <p>{booksFromArray.volumeInfo.categories} </p>
-                {!booksFromArray.saleInfo && (
-                  // <p>{booksFromArray.saleInfo?.listPrice?.amount}</p>
-                  <p>{booksFromArray.saleInfo.listPrice.amount}</p>
-                )}
-                {!booksFromArray.saleInfo && (
-                  // <a href={booksFromArray.saleInfo?.buylink}>Buy This Book</a>
-                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
-                )}
+                {/* {!booksFromArray.saleInfo && ( 
+                   <p>{booksFromArray.saleInfo?.listPrice?.amount}€</p>
+                   <p>{booksFromArray.saleInfo.listPrice.amount}</p>
+                   )} 
+                {!booksFromArray.saleInfo && ( 
+                  <Link to={{ pathname: `${booksFromArray.saleInfo?.buylink}` }} target="_blank">Buy</Link>
+                
+                 <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
+                )} */}
                 </div>
                 <img className="pointer" src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextIcon" onClick={()=>this.state.sujet&&this.handleClick(this.state.sujet)} />
 
@@ -113,7 +127,7 @@ export default class Test extends React.Component {
                   className="pointer"
                   src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
                   alt="heart"
-                  // onClick={}
+                  onClick={() => this.handleFav()} 
                 />
             </div>
           )}
