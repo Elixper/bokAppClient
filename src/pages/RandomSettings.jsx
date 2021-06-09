@@ -20,7 +20,7 @@ export default class Test extends React.Component {
   handleClick = (sujet) => {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+        `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&langRestrict=en&maxResults=20&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
         this.setState({
@@ -36,7 +36,7 @@ export default class Test extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
         this.setState({
