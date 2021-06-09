@@ -153,6 +153,7 @@ export default class Test extends React.Component {
                 
                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )} */}
+                <a href={booksFromArray.saleInfo?.buyLink} >Buy</a>
               </div>
               <img
                 className="pointer"
