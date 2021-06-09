@@ -2,10 +2,10 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import NavMain from "./components/NavMain";
 import Test from "./pages/Test";
+import test2 from "./pages/test2";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import RandomSettings from "./pages/RandomSettings";
-
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -19,6 +19,7 @@ function App() {
       {/* <NavMain/> */}
       <Switch>
       <Route exact path="/test" component={Test} />
+      <Route exact path="/test2" component={test2} />
         <Route exact path="/" component={Home} />
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/random-settings" component={RandomSettings} />
