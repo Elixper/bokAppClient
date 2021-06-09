@@ -110,7 +110,11 @@ export default class Test extends React.Component {
                   alt="nextRandomIcon"
                   onClick={() => this.handleClickNext()}
                 />
-              
+                 <img
+                  src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
+                  alt="heart"
+                  // onClick={}
+                />
             </div>
           )}
         </div>
