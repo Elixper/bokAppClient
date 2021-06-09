@@ -60,11 +60,11 @@ export default class Test extends React.Component {
     } )
       }
 
-  saveList = (data) => {
-    this.setState({
-saveList : [... this.state.saveList, data]
-    })
-  }
+//   saveList = (data) => {
+//     this.setState({
+// saveList : [... this.state.saveList, data]
+//     })
+//   }
 
   componentDidMount() {
     axios
@@ -166,6 +166,7 @@ saveList : [... this.state.saveList, data]
                 
                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )} */}
+                <a href={booksFromArray.saleInfo?.buyLink} >Buy</a>
               </div>
               <img
                 className="pointer"

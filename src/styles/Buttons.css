@@ -32,6 +32,12 @@
     border: 1px solid var(--purple);
   }
   
+  .Btn.btn-secondary:active {
+    background: var(--main-bg-color);
+    color: var(--purple);
+    border: 1px solid var(--purple);
+  }
+
   .Btn.btn-tertiary {
     background-color: rgba(255, 255, 255, 0);
     color: var(--purple);
