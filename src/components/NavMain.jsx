@@ -28,49 +28,48 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-        <img src={process.env.PUBLIC_URL + '/bokLogo.png'} height={30} alt="boklogo"></img>
+        <img className="logonav" src={process.env.PUBLIC_URL + '/bokLogo.png'} alt="boklogo"></img>
       </NavLink>
-      <ul className="nav-list">
+      <div className="nav-list">
         {context.isLoggedIn && (
           <React.Fragment>
-            <li>
-              <NavLink to="/profile">
-              <img className="pointer" src={process.env.PUBLIC_URL + "/icons/random.svg"} alt="nextIcon"/>
+        
+              <NavLink to="/random-settings">
+              <img className="pointer icons" src={process.env.PUBLIC_URL + "/icons/random.svg"} alt="nextIcon"/>
               </NavLink>
-              </li>
-              <li>
+            
+          
+              <NavLink to="/dashboard">
+              <img className="pointer icons" src={process.env.PUBLIC_URL + "/icons/idicon.svg"} alt="nextIcon"/>
+              </NavLink>
+            
+          
               <NavLink to="/profile">
+                <div className="userandicon">
               <img className="pointer" src={process.env.PUBLIC_URL + "/icons/bookicon.svg"} alt="nextIcon"/>
+              {context.user && context.user.username}
+              </div> 
               </NavLink>
-              </li>
-              <li>
-              <NavLink to="/profile">
-              <img className="pointer" src={process.env.PUBLIC_URL + "/icons/idicon.svg"} alt="nextIcon"/>
-              </NavLink>
-              </li>
-            <li>
-              <NavLink to="/profile">
-                {context.user && context.user.username}
-              </NavLink>
-            </li>
-            <li>
-              <p className="pointer" onClick={handleLogout}>Logout</p>
-            </li>
+             
+          
+              <img className="pointer" src={process.env.PUBLIC_URL + "/icons/logout.svg"} onClick={handleLogout} alt="logout"/>
+          
           </React.Fragment>
         )}
         {!context.isLoggedIn && (
           <React.Fragment>
-            <li>
+      
+      <div className="spacebutton">
             <Button cinq>
-              <NavLink to="/signin">LOG IN</NavLink></Button>  
-            </li>
-            <li>
+              <NavLink  to="/signin">LOG IN</NavLink></Button>  
+          </div>
+        
             <Button cinq>
               <NavLink to="/signup">SIGN UP</NavLink></Button>  
-            </li>        
+               
             </React.Fragment>
         )}
-      </ul>
+      </div>
     </nav>
   );
 };
