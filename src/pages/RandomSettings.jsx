@@ -107,9 +107,10 @@ export default class Test extends React.Component {
                   <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )}
                 </div>
-                <img src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextIcon" onClick={()=>this.handleClick(this.state.sujet)} />
+                <img className="pointer" src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextIcon" onClick={()=>this.state.sujet&&this.handleClick(this.state.sujet)} />
 
                  <img
+                  className="pointer"
                   src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
                   alt="heart"
                   // onClick={}

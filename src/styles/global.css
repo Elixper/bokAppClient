@@ -42,6 +42,10 @@ button{
   line-height: 20px;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 /* ========= FORMS ========= */
 
 input {
