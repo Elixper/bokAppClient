@@ -34,7 +34,7 @@ class FormSignup extends Component {
 
   render() {
     if (this.props.context.user) {
-      return <Redirect to="/" />;
+      return <Redirect to="/random-settings" />;
     }
 
     return (
