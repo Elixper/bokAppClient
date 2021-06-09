@@ -47,11 +47,11 @@ export default class Test extends React.Component {
     // ga("send", "event", "Book List", "Add to favorites");
   };
 
-  saveList = () => {
-    this.setState({
-saveList : [... this.state.saveList, data]
-    })
-  }
+//   saveList = (data) => {
+//     this.setState({
+// saveList : [... this.state.saveList, data]
+//     })
+//   }
 
   componentDidMount() {
     axios
@@ -74,7 +74,7 @@ saveList : [... this.state.saveList, data]
   }
 
   render() {
-    const booksFromArray = this.state.test
+    const booksFromArray = this.state.booksFromApi
       .sort(() => Math.random() - Math.random())
       .find(() => true);
 

@@ -7,6 +7,7 @@ import Button from "../components/Base/Button"
 
 
 import "../styles/NavMain.css";
+import "../styles/NavUser.css";
 
 const NavMain = (props) => {
   const { context } = props;
@@ -31,13 +32,27 @@ const NavMain = (props) => {
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
-        
               <NavLink to="/profile">
-                {context.user && context.user.email}
+              <img className="pointer" src={process.env.PUBLIC_URL + "/icons/random.svg"} alt="nextIcon"/>
+              </NavLink>
+              </li>
+              <li>
+              <NavLink to="/profile">
+              <img className="pointer" src={process.env.PUBLIC_URL + "/icons/bookicon.svg"} alt="nextIcon"/>
+              </NavLink>
+              </li>
+              <li>
+              <NavLink to="/profile">
+              <img className="pointer" src={process.env.PUBLIC_URL + "/icons/idicon.svg"} alt="nextIcon"/>
+              </NavLink>
+              </li>
+            <li>
+              <NavLink to="/profile">
+                {context.user && context.user.username}
               </NavLink>
             </li>
             <li>
-              <p onClick={handleLogout}>Logout</p>
+              <p className="pointer" onClick={handleLogout}>Logout</p>
             </li>
           </React.Fragment>
         )}
