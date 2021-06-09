@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {NavLink,Switch, Route,Redirect} from "react-router-dom"
 import NavMain from "../components/NavMain";
 // import NavDashboard from "../components/NavDashboard";
-import FavItem from "../components/ListItems/FavItem";
+import FavItem from "../components/FavItem";
 import NewBookForm from "../components/Forms/NewBookForm";
 import Masterpieces from "../components/Masterpieces";
 import Button from "../components/Base/Button"
