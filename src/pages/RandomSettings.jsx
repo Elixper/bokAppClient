@@ -11,11 +11,10 @@ export default class Test extends React.Component {
     super(props);
 
     this.state = {
-      test: [],
-      sujet:this.props.sujet,
+      booksFromApi: [],
+      sujet: this.props.sujet,
+      saveList: [null],
     };
-
-    
   }
 
   handleClick = (sujet) => {
@@ -25,8 +24,8 @@ export default class Test extends React.Component {
       )
       .then((response) => {
         this.setState({
-          test: response.data.items,
-          sujet:sujet,
+          booksFromApi: response.data.items,
+          sujet: sujet,
         });
       })
       .catch((error) => {
@@ -35,7 +34,23 @@ export default class Test extends React.Component {
   };
 
   handleFav = () => {
+    axios
+      //populate googleApi data
+      .get("/api/bookFromData")
+      .then((result) => {
+        console.log(result.data);
+        this.setState({
+          saveList: result.data,
+        });
+      })
+    .catch(error=>console.log(error))
+    // ga("send", "event", "Book List", "Add to favorites");
+  };
 
+  saveList = () => {
+    this.setState({
+saveList : [... this.state.saveList, data]
+    })
   }
 
   componentDidMount() {
@@ -46,7 +61,7 @@ export default class Test extends React.Component {
       .then((response) => {
         // console.log(response.data)
         this.setState({
-          test: response.data.items,
+          booksFromApi: response.data.items,
         });
       })
       .catch((error) => {
@@ -54,9 +69,9 @@ export default class Test extends React.Component {
       });
   }
 
-componentWillUnmount(){
-  this.axiosCancelSource.cancel('Axios request canceled.')
-}
+  componentWillUnmount() {
+    this.axiosCancelSource.cancel("Axios request canceled.");
+  }
 
   render() {
     const booksFromArray = this.state.test
@@ -68,20 +83,38 @@ componentWillUnmount(){
         <NavMain />
         <div className="all">
           <div className="choices">
-            <Button tertiary> <div className="butt" onClick={() => this.handleClick("history")}>
-              History</div>
+            <Button tertiary>
+              {" "}
+              <div className="butt" onClick={() => this.handleClick("history")}>
+                History
+              </div>
             </Button>
-            <Button tertiary> <div className="butt" onClick={() => this.handleClick("fiction")}>
-              Fiction</div>
+            <Button tertiary>
+              {" "}
+              <div className="butt" onClick={() => this.handleClick("fiction")}>
+                Fiction
+              </div>
             </Button>
-            <Button tertiary> <div className="butt" onClick={() => this.handleClick("romance")}>
-              Romance</div>
+            <Button tertiary>
+              {" "}
+              <div className="butt" onClick={() => this.handleClick("romance")}>
+                Romance
+              </div>
             </Button>
-            <Button tertiary> <div className="butt" onClick={() => this.handleClick("art")}>
-              Art</div>
+            <Button tertiary>
+              {" "}
+              <div className="butt" onClick={() => this.handleClick("art")}>
+                Art
+              </div>
             </Button>
-            <Button tertiary> <div className="butt" onClick={() => this.handleClick("children")}>
-              Children</div>
+            <Button tertiary>
+              {" "}
+              <div
+                className="butt"
+                onClick={() => this.handleClick("children")}
+              >
+                Children
+              </div>
             </Button>
           </div>
 
@@ -120,15 +153,22 @@ componentWillUnmount(){
                 
                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )} */}
-                </div>
-                <img className="pointer" src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextIcon" onClick={()=>this.state.sujet&&this.handleClick(this.state.sujet)} />
+              </div>
+              <img
+                className="pointer"
+                src={process.env.PUBLIC_URL + "/icons/next.svg"}
+                alt="nextIcon"
+                onClick={() =>
+                  this.state.sujet && this.handleClick(this.state.sujet)
+                }
+              />
 
-                 <img
-                  className="pointer"
-                  src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
-                  alt="heart"
-                  onClick={() => this.handleFav()} 
-                />
+              <img
+                className="pointer"
+                src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
+                alt="heart"
+                onClick={() => this.handleFav()}
+              />
             </div>
           )}
         </div>
