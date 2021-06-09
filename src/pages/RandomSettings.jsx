@@ -69,9 +69,9 @@ export default class Test extends React.Component {
       });
   }
 
-  componentWillUnmount() {
-    this.axiosCancelSource.cancel("Axios request canceled.");
-  }
+  // componentWillUnmount() {
+  //   this.axiosCancelSource.cancel("Axios request canceled.");
+  // }
 
   render() {
     const booksFromArray = this.state.booksFromApi

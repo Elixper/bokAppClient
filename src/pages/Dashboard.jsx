@@ -22,9 +22,9 @@ class Dashboard extends Component {
     return (
       <div>
         <NavMain/>
-        <Button activeClassName="active" secondary><NavLink to="/dashboard/my-list">My list</NavLink></Button>{" "}
-        <Button secondary><NavLink activeClassName="active" to="/dashboard/create">Create a masterpiece</NavLink></Button>{" "}
-        <Button secondary><NavLink activeClassName="active" to="/dashboard/my-masterpieces">My masterpieces</NavLink></Button>{" "}
+        <Button secondary> <NavLink to="/dashboard/my-list">My list</NavLink></Button>{" "}
+        <Button secondary><NavLink to="/dashboard/create">Create a masterpiece</NavLink></Button>{" "}
+        <Button secondary><NavLink to="/dashboard/my-masterpieces">My masterpieces</NavLink></Button>{" "}
         
         <Switch>
           <Route exact path="/dashboard/my-list"component={FavItem}></Route>
