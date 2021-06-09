@@ -6,6 +6,7 @@ const Button = ({ children, disabled, handleClick, ...rest }) => {
     primary: "primary",
     secondary: "secondary",
     tertiary: "tertiary",
+    quatre:"quatre",
     cinq: "cinq",
   };
 
