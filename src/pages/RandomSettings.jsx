@@ -5,6 +5,9 @@ import axios from "axios";
 import NavMain from "../components/NavMain";
 import "./../styles/Random.css";
 import "./../styles/global.css";
+import  api from "../api/apiHandler"
+
+const {service} = api
 
 export default class Test extends React.Component {
   constructor(props) {
@@ -33,8 +36,8 @@ export default class Test extends React.Component {
       });
   };
 
-  handleFav = () => {
-    axios
+  componentDidMount(){
+    service
       //populate googleApi data
       .get("/api/bookFromData")
       .then((result) => {
@@ -45,7 +48,17 @@ export default class Test extends React.Component {
       })
     .catch(error=>console.log(error))
     // ga("send", "event", "Book List", "Add to favorites");
-  };
+  }
+  handleSave = (data) => {
+    axios
+    .post("/api/bookFromData/add-list", {}, {withCredentials: true})
+    .then((result) => {
+        console.log(result.data);
+        this.setState({
+            saveList : [... this.state.saveList, data]
+                })
+    } )
+      }
 
 //   saveList = (data) => {
 //     this.setState({
@@ -69,9 +82,9 @@ export default class Test extends React.Component {
       });
   }
 
-  // componentWillUnmount() {
-  //   this.axiosCancelSource.cancel("Axios request canceled.");
-  // }
+  componentWillUnmount() {
+   // this.axiosCancelSource.cancel("Axios request canceled.");
+  }
 
   render() {
     const booksFromArray = this.state.booksFromApi
@@ -168,7 +181,7 @@ export default class Test extends React.Component {
                 className="pointer"
                 src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
                 alt="heart"
-                onClick={() => this.handleFav()}
+                onClick={() => this.handleSave()}
               />
             </div>
           )}
