@@ -22,6 +22,8 @@ const NavMain = (props) => {
       });
   }
 
+  console.log("context", context)
+
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
