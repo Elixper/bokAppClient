@@ -12,6 +12,7 @@ export default class Test extends React.Component {
 
     this.state = {
       test: [],
+      sujet:this.props.sujet,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -24,6 +25,7 @@ export default class Test extends React.Component {
       .then((response) => {
         this.setState({
           test: response.data.items,
+          sujet:sujet,
         });
       })
       .catch((error) => {
@@ -105,11 +107,8 @@ export default class Test extends React.Component {
                   <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )}
                 </div>
-                <img
-                  src={process.env.PUBLIC_URL + "/icons/next.svg"}
-                  alt="nextRandomIcon"
-                  onClick={() => this.handleClickNext()}
-                />
+                <img src={process.env.PUBLIC_URL + "/icons/next.svg"} alt="nextIcon" onClick={()=>this.handleClick(this.state.sujet)} />
+
                  <img
                   src={process.env.PUBLIC_URL + "/icons/noFavoritesPossible.svg"}
                   alt="heart"
