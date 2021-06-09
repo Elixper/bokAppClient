@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {NavLink,Switch, Route,Redirect} from "react-router-dom"
-// import NavMain from "../components/NavMain";
+import NavMain from "../components/NavMain";
 // import NavDashboard from "../components/NavDashboard";
 import FavItem from "../components/ListItems/FavItem";
 import NewBookForm from "../components/Forms/NewBookForm";
@@ -21,9 +21,10 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Button><NavLink to="/dashboard/my-list">My list</NavLink></Button>{" "}
-        <Button><NavLink to="/dashboard/create">Create a masterpiece</NavLink></Button>{" "}
-        <Button><NavLink to="/dashboard/my-masterpieces">My masterpieces</NavLink></Button>{" "}
+        <NavMain/>
+        <Button secondary><NavLink to="/dashboard/my-list">My list</NavLink></Button>{" "}
+        <Button secondary><NavLink to="/dashboard/create">Create a masterpiece</NavLink></Button>{" "}
+        <Button secondary><NavLink to="/dashboard/my-masterpieces">My masterpieces</NavLink></Button>{" "}
         
         <Switch>
           <Route exact path="/dashboard/my-list"component={FavItem}></Route>

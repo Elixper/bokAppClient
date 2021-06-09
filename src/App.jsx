@@ -16,13 +16,14 @@ function App() {
   return (
    
     <div className="App">
-      <NavMain/>
+      {/* <NavMain/> */}
       <Switch>
       <Route exact path="/test" component={Test} />
       <Route exact path="/test2" component={test2} />
         <Route exact path="/" component={Home} />
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/random-settings" component={RandomSettings} />
+        {/* <Route exact path="/your-random" component={RandomResult} /> */}
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/add-your-masterpiece" component={NewBookForm} />

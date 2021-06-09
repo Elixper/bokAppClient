@@ -33,7 +33,7 @@
   }
   
   .Btn.btn-tertiary {
-    background-color: var(--main-bg-color);
+    background-color: rgba(255, 255, 255, 0);
     color: var(--purple);
     border: 1px solid var(--purple);
   }
@@ -49,8 +49,3 @@
   .Btn.btn-cinq:hover{ 
     border: 1px solid rgba(255, 255, 255, 0);}
   
-  .Btn.btn-quatre {
-    background: var(--purple);
-    color: white;
-    border:none;
-  }

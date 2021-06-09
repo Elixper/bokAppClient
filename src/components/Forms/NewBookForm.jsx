@@ -80,10 +80,10 @@ export default class NewBookForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.submit}>
+        <form className="containerform" onSubmit={this.submit}>
           <h1>Add Your Masterpiece in Bok</h1>
-
-          <div className="title">
+          
+          {/* <div className="title"> */}
             <label htmlFor="title">Title</label>
             <input
               id="title"
@@ -92,8 +92,8 @@ export default class NewBookForm extends Component {
               onChange={this.handleChange}
               placeholder="Title"
             />
-          </div>
-          <div className="pseudo">
+          {/* </div> */}
+          {/* <div className="pseudo"> */}
             <label htmlFor="pseudoAuthor">
               <em>"Nom de Plume"</em>
             </label>
@@ -104,9 +104,9 @@ export default class NewBookForm extends Component {
               type="text"
               placeholder="What is your 'nom de plume' ? "
             />
-          </div>
+          {/* </div> */}
 
-          <div className="description">
+          {/* <div className="description"> */}
             <label htmlFor="description">
               A few words about your chef d'oeuvre
             </label>
@@ -116,9 +116,9 @@ export default class NewBookForm extends Component {
               type="text"
               onChange={this.handleChange}
             />
-          </div>
+          {/* </div> */}
 
-          <div className="genre">
+          {/* <div className="genre"> */}
             <label htmlFor="genre">Genre</label>
             <select onChange={this.handleChange} name="genre" id="genre">
               <option value="" disabled>
@@ -140,18 +140,9 @@ export default class NewBookForm extends Component {
               <option value="Romance">Romance</option>
               <option value="ScienceFiction">Science Fiction</option>
             </select>
-          </div>
-          <div className="image">
-            <label htmlFor="image">Upload image</label>
-            <input
-              onChange={this.handleChange}
-              id="image"
-              type="file"
-              name="image"
-              ref={this.bokBookCover}
-            />
-          </div>
-          <div className="link">
+          {/* </div> */}
+          
+          {/* <div className="link"> */}
             <label htmlFor="link"> Link of your book</label>
             <input
               onChange={this.handleChange}
@@ -162,9 +153,20 @@ export default class NewBookForm extends Component {
               pattern="https://.*"
               size="30"
             />
-          </div>
-
-          <button>Submit!!</button>
+          {/* </div> */}
+<div>
+          {/* <div className="image"> */}
+          <label htmlFor="image">Upload image</label>
+            <input
+              onChange={this.handleChange}
+              id="image"
+              type="file"
+              name="image"
+              ref={this.bokBookCover}
+            />
+          {/* </div> */}
+</div>
+          <button className="submit">Submit!!</button>
         </form>
       </div>
     );
