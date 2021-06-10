@@ -15,7 +15,7 @@ const {service}= apiHandler
       }
       componentDidMount() {
         service
-          .get("/book")
+          .get("/user/me/books")
           .then((response) => {
             this.setState({
               masterpieces: response.data,
@@ -24,13 +24,20 @@ const {service}= apiHandler
           .catch((error) => {
             console.log(error);
           });
-      }
+
+        // service.get('user/my-account')
+        //  .then(response => {
+        //   console.log(response.data)
+        //   this.setState({ message_user : response.data })
+        //       })
+        }
+      
 
       addMasterpiece = (masterpiece) => {
         const newMasterpieces = [...this.state.masterpieces, masterpiece];
     
         this.setState({
-          pokemons: newMasterpieces,
+          masterpieces: newMasterpieces,
         });
     
     };
@@ -41,7 +48,7 @@ const {service}= apiHandler
                 {this.state.masterpieces.map((masterpiece) => {
               return (
     
-                // {context.getUserBokBook===masterpiece.author.id} && (
+                // {context.getUserBokBook===masterpiece.author.id} && (..)
                 <div className="brother">
 
                   <Link to={`/masterpieces/${masterpiece._id}`}>
@@ -53,27 +60,13 @@ const {service}= apiHandler
                   <h4>{masterpiece.pseudoAuthor}</h4> 
                   <h4>{masterpiece.author._id}</h4>
                   </div>
-            //   );
+         
               );
               
               })}
               
 
-                     {/* <h1>Empty fav/ need to log / form</h1>
-                     
-                     </div>   
- */}
 
-
-                <div className="sister">
-
-                {/* <img className="close"src={process.env.PUBLIC_URL + 
-                    "/icons/close.svg"} alt="close" /> */}
-
-                    {/* <img className="books" src={process.env.PUBLIC_URL + 
-                        "/icons/nosha.svg"} alt="books" /> */}
-                    
-                    </div> 
                  
                     
                 </div>
