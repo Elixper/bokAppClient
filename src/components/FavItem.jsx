@@ -26,11 +26,7 @@ const {service}= apiHandler
             console.log(error);
           });
 
-        // service.get('user/my-account')
-        //  .then(response => {
-        //   console.log(response.data)
-        //   this.setState({ message_user : response.data })
-        //       })
+     
         }
       
 

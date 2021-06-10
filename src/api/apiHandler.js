@@ -76,9 +76,9 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  deleteBokBook(bokId) {
+  deleteBokBook(id) {
     return service
-      .delete(`/book/${bokId}`)
+      .delete(`/user/delete/${id}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
