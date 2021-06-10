@@ -6,6 +6,7 @@ import NavMain from "../components/NavMain";
 import "./../styles/Random.css";
 import "./../styles/global.css";
 import api from "../api/apiHandler";
+import apiHandler from "../api/apiHandler";
 
 const { service } = api;
 
@@ -26,9 +27,11 @@ export default class Test extends React.Component {
         `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&langRestrict=en&maxResults=20&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
+        console.log(response);
         this.setState({
           booksFromApi: response.data.items,
           sujet: sujet,
+          savelist: response.data.items, // recup l'id regarde le console.log() pour avoir le bon chemin de l'objet
         });
       })
       .catch((error) => {
@@ -36,44 +39,35 @@ export default class Test extends React.Component {
       });
   };
 
-  // componentDidMount(){
+  
+
+  // handleSave = (data) => {
+  //   console.log("je suis la savelist", this.state.saveList);
   //   service
-  //     //populate googleApi data
-  //     .get("/bookFromData")
+  //     .post("/user/dashboard/add-list", {}, { withCredentials: true })
   //     .then((result) => {
   //       console.log(result.data);
   //       this.setState({
-  //         saveList: result.data,
+  //         saveList: [...this.state.saveList, data],
   //       });
-  //     })
-  //   .catch(error=>console.log(error))
-    // ga("send", "event", "Book List", "Add to favorites");
-  // }
-  handleSave = (data) => {
-   service
-    .post("/user/dashboard/add-list", {}, {withCredentials: true})
-    .then((result) => {
-        console.log(result.data);
-        this.setState({
-            saveList : [... this.state.saveList, data]
-                })
-    } )
-      }
+  //     });
+  // };
 
-//   saveList = (data) => {
-//     this.setState({
-// saveList : [... this.state.saveList, data]
-//     })
-//   }
+  handleSave = (evt, id) =>{
+    const bookId = {id: id}
+    apiHandler
+    .saveBookFromApi(bookId)
+    .then(this.setState({ message : "save in your list"}))
+    .catch(err => console.log(err))
+  }
 
   componentDidMount() {
-    
     axios
-    .get(
-      `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
-        console.log("axios Api" ,response.data)
+        console.log("axios Api", response.data);
         this.setState({
           booksFromApi: response.data.items,
         });
@@ -81,19 +75,18 @@ export default class Test extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-//j'ai dû arréter les tests parce que tooManyRequest
-      service
-        //populate googleApi data
-        .get("/bookFromData")
-        .then((result) => {
-          console.log("fetch ggl id and populate ",result.data);
-          this.setState({
-            saveList: result.data,
-          });
-        })
-        .catch((error) => console.log(error));
-    }
-
+    //j'ai dû arréter les tests parce que tooManyRequest
+    service
+      //populate googleApi data
+      .get("/bookFromData")
+      .then((result) => {
+        console.log("fetch ggl id and populate ", result.data);
+        this.setState({
+          saveList: result.data,
+        });
+      })
+      .catch((error) => console.log(error));
+  }
 
   // handleSave = (data) => {
   //   service
@@ -125,12 +118,13 @@ export default class Test extends React.Component {
   // componentWillUnmount() {
   //  this.axiosCancelSource.cancel("Axios request canceled.");
   // }
+  
 
   render() {
     const booksFromArray = this.state.booksFromApi
       .sort(() => Math.random() - Math.random())
       .find(() => true);
-
+    console.log("BITCH LE BOOK", booksFromArray)
     return (
       <div>
         <NavMain />
@@ -173,7 +167,6 @@ export default class Test extends React.Component {
 
           {booksFromArray && (
             <div className="bigcontainer fixed">
-              
               {booksFromArray.volumeInfo.imageLinks && (
                 <img
                   className="cover"
@@ -187,15 +180,16 @@ export default class Test extends React.Component {
                   className="cover"
                   src={process.env.PUBLIC_URL + "/COVER.jpg"}
                   alt="book cover"
-                />  
+                />
               )}
-              
+
               <div className="infosright">
                 <h1> {booksFromArray.volumeInfo.title}</h1>
                 <div className="inlineinfos">
-                <h2> {booksFromArray.volumeInfo.authors}</h2>
-                <p> {booksFromArray.volumeInfo.publishedDate}</p>
-                <p> {booksFromArray.volumeInfo.pageCount} pages</p>
+                  <h2> {booksFromArray.volumeInfo.authors}</h2>
+                  <p> {booksFromArray.volumeInfo.publishedDate}</p>
+                  <p> {booksFromArray.volumeInfo.pageCount} pages</p>
+
                 </div>
                 <p className="summary">
                   {booksFromArray.volumeInfo.description}
@@ -213,21 +207,21 @@ export default class Test extends React.Component {
                 {/* <a href={booksFromArray.saleInfo?.buyLink}>Buy</a> */}
               </div>
               <div className="actionsicons">
-              <img
-                className="pointer"
-                src={process.env.PUBLIC_URL + "/icons/next.svg"}
-                alt="nextIcon"
-                onClick={() =>
-                  this.state.sujet && this.handleClick(this.state.sujet)
-                }
-              />
+                <img
+                  className="pointer"
+                  src={process.env.PUBLIC_URL + "/icons/next.svg"}
+                  alt="nextIcon"
+                  onClick={() =>
+                    this.state.sujet && this.handleClick(this.state.sujet)
+                  }
+                />
 
-              <img
-                className="pointer"
-                src={process.env.PUBLIC_URL + "/icons/noFavoritePossible.png"}
-                alt="heart"
-                onClick={() => this.handleSave()}
-              />
+                <img
+                  className="pointer"
+                  src={process.env.PUBLIC_URL + "/icons/noFavoritePossible.png"}
+                  alt="heart"
+                  onClick={(e) => this.handleSave(e, booksFromArray.id)}
+                />
               </div>
             </div>
           )}
