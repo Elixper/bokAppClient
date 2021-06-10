@@ -37,20 +37,10 @@ export default class Test extends React.Component {
   };
 
   componentDidMount() {
-    service
-      //populate googleApi data
-      .get("/bookFromData")
-      .then((result) => {
-        console.log("fetch ggl id and populate ",result.data);
-        this.setState({
-          saveList: result.data,
-        });
-      })
-      .catch((error) => console.log(error));
-
-      axios
-      .get(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+    
+    axios
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
         console.log("axios Api" ,response.data)
@@ -61,7 +51,18 @@ export default class Test extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+//j'ai dû arréter les tests parce que tooManyRequest
+      service
+        //populate googleApi data
+        .get("/bookFromData/add")
+        .then((result) => {
+          console.log("fetch ggl id and populate ",result.data);
+          this.setState({
+            saveList: result.data,
+          });
+        })
+        .catch((error) => console.log(error));
+    }
 
 
   handleSave = (data) => {
@@ -175,7 +176,7 @@ export default class Test extends React.Component {
                 
                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )} */}
-                <a href={booksFromArray.saleInfo?.buyLink}>Buy</a>
+                {/* <a href={booksFromArray.saleInfo?.buyLink}>Buy</a> */}
               </div>
               <img
                 className="pointer"
