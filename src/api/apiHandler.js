@@ -88,6 +88,13 @@ const apiHandler = {
     .get("/my-account/creation")
     .then(res => res.data)
     .catch(errorHandler)
+  },
+
+  saveBookFromApi(id){
+    return service
+    .post("/user/dashboard/add-list", id)
+    .then(res=> res.data)
+    .catch(errorHandler)
   }
 };
 
