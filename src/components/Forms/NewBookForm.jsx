@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { buildFormData } from "../../formDataUtils";
 import apiHandler from "../../api/apiHandler";
-import "./../../styles/NewBookForm.css";
+import "./../../styles/newBookForm.css";
 import "./../../styles/global.css"
 
 const bokState = {

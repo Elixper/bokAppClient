@@ -5,7 +5,7 @@ import axios from "axios";
 import NavMain from "../components/NavMain";
 import "./../styles/Random.css";
 import "./../styles/global.css";
-import  api from "../api/apiHandler"
+import  apiHandler from "../api/apiHandler"
 
 // const {service} = api
 
@@ -49,16 +49,16 @@ export default class Test extends React.Component {
   //   .catch(error=>console.log(error))
     // ga("send", "event", "Book List", "Add to favorites");
   // }
-  // handleSave = (data) => {
-  //  service
-  //   .post("/bookFromData/add-list", {}, {withCredentials: true})
-  //   .then((result) => {
-  //       console.log(result.data);
-  //       this.setState({
-  //           saveList : [... this.state.saveList, data]
-  //               })
-  //   } )
-  //     }
+  handleSave = (data) => {
+   service
+    .post("/bookFromData/add-list", {}, {withCredentials: true})
+    .then((result) => {
+        console.log(result.data);
+        this.setState({
+            saveList : [... this.state.saveList, data]
+                })
+    } )
+      }
 
 //   saveList = (data) => {
 //     this.setState({
