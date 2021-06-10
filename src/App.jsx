@@ -22,7 +22,10 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/add-your-masterpiece" component={NewBookForm} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <Route exact path="/profile" component={Profile} />
+
+{/* Add protected route to dashboard & profile */}
+
       </Switch>
     </div>
   );

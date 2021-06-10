@@ -20,12 +20,15 @@ export default class Test extends React.Component {
     };
   }
 
+// ONLY FOR RANDOM SUBJECT 
+
   handleClick = (sujet) => {
     axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=subject:${sujet}&filter=paid-ebooks&langRestrict=en&maxResults=20&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
+        console.log("i'm the sujet" , response);
         this.setState({
           booksFromApi: response.data.items,
           sujet: sujet,
@@ -36,75 +39,41 @@ export default class Test extends React.Component {
       });
   };
 
-  // componentDidMount(){
-  //   service
-  //     //populate googleApi data
-  //     .get("/bookFromData")
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       this.setState({
-  //         saveList: result.data,
-  //       });
-  //     })
-  //   .catch(error=>console.log(error))
-    // ga("send", "event", "Book List", "Add to favorites");
-  // }
-  // handleSave = (data) => {
-  //  service
-  //   .post("/bookFromData/add-list", {}, {withCredentials: true})
-  //   .then((result) => {
-  //       console.log(result.data);
-  //       this.setState({
-  //           saveList : [... this.state.saveList, data]
-  //               })
-  //   } )
-  //     }
 
-//   saveList = (data) => {
-//     this.setState({
-// saveList : [... this.state.saveList, data]
-//     })
-//   }
-
-  componentDidMount() {
-    
-    axios
-    .get(
-      `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
-      )
-      .then((response) => {
-        console.log("axios Api" ,response.data)
-        this.setState({
-          booksFromApi: response.data.items,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-//j'ai dû arréter les tests parce que tooManyRequest
-      service
-        //populate googleApi data
-        .get("/bookFromData/add")
-        .then((result) => {
-          console.log("fetch ggl id and populate ",result.data);
-          this.setState({
-            saveList: result.data,
-          });
-        })
-        .catch((error) => console.log(error));
-    }
-
+// ADD TO MY LIST, FAV BOOKS
 
   handleSave = (data) => {
     service
-      .post("/dashboard/add-list", {}, { withCredentials: true })
+      .post("/bookFromData/add-list", {data})
       .then((result) => {
-        console.log("handle save ",result.data);
+        console.log("hello,i'm the data" , result.data[0]._id);
         this.setState({
           saveList: [...this.state.saveList, data],
         });
       });
   };
+
+
+  componentDidMount() {
+    service
+      //populate googleApi data
+      .get("/bookFromData")
+      .then((result) => {
+        console.log("i'm the get" , result.data[0]._id);
+        this.setState({
+          saveList: result.data,
+        });
+        console.log("i'm the savelist", this.state.saveList)
+      })
+      .catch((error) => console.log(error));
+    // ga("send", "event", "Book List", "Add to favorites");
+  }
+
+  //   saveList = (data) => {
+  //     this.setState({
+  // saveList : [... this.state.saveList, data]
+  //     })
+  //   }
 
   // componentDidMount() {
   //   axios
@@ -122,9 +91,9 @@ export default class Test extends React.Component {
   //     });
   // }
 
-  // componentWillUnmount() {
-  //  this.axiosCancelSource.cancel("Axios request canceled.");
-  // }
+  componentWillUnmount() {
+    // this.axiosCancelSource.cancel("Axios request canceled.");
+  }
 
   render() {
     const booksFromArray = this.state.booksFromApi
@@ -172,8 +141,7 @@ export default class Test extends React.Component {
           </div>
 
           {booksFromArray && (
-            <div className="bigcontainer fixed">
-              
+            <div className="bigcontainer">
               {booksFromArray.volumeInfo.imageLinks && (
                 <img
                   className="cover"
@@ -187,19 +155,18 @@ export default class Test extends React.Component {
                   className="cover"
                   src={process.env.PUBLIC_URL + "/COVER.jpg"}
                   alt="book cover"
-                />  
+                />
               )}
-              
               <div className="infosright">
                 <h1> {booksFromArray.volumeInfo.title}</h1>
-                <div className="inlineinfos">
                 <h2> {booksFromArray.volumeInfo.authors}</h2>
                 <p> {booksFromArray.volumeInfo.publishedDate}</p>
                 <p> {booksFromArray.volumeInfo.pageCount} pages</p>
-                </div>
+                <div className="containsummary">
                 <p className="summary">
-                  {booksFromArray.volumeInfo.description}
+                  {booksFromArray.volumeInfo.description}{" "}
                 </p>
+                </div>
                 {/* <p>{booksFromArray.volumeInfo.categories} </p> */}
                 {/* {!booksFromArray.saleInfo && ( 
                    <p>{booksFromArray.saleInfo?.listPrice?.amount}€</p>
@@ -210,9 +177,8 @@ export default class Test extends React.Component {
                 
                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )} */}
-                {/* <a href={booksFromArray.saleInfo?.buyLink}>Buy</a> */}
+                <a href={booksFromArray.saleInfo?.buyLink}>Buy</a>
               </div>
-              <div className="actionsicons">
               <img
                 className="pointer"
                 src={process.env.PUBLIC_URL + "/icons/next.svg"}
@@ -224,11 +190,10 @@ export default class Test extends React.Component {
 
               <img
                 className="pointer"
-                src={process.env.PUBLIC_URL + "/icons/noFavoritePossible.png"}
+                src={process.env.PUBLIC_URL + "/icons/emptyHeart.svg"}
                 alt="heart"
                 onClick={() => this.handleSave()}
               />
-              </div>
             </div>
           )}
         </div>

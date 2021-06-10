@@ -1,0 +1,43 @@
+.parent {
+position: relative;
+  width: 60vw;
+  height: 35vw;
+  box-shadow: -25px -15px 31px rgba(215, 237, 253, 0.308);
+  border-radius: 30px;
+  display: flex;
+  flex-wrap: row wrap;
+  justify-content: space-between;
+}
+
+.close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 10px;
+    cursor: pointer;
+}
+
+.books{
+    position: absolute;
+    left: 400px;
+    top: 150px;
+    width: 223.1px;
+    height: 229.36px;
+}
+
+.sister{
+    width: 330px;
+border-radius: 30px;
+left: 1331px;
+background-color: var(--main-bg-color);
+}
+
+.brother{
+    color: var(--purple);
+    font-family: "poppins";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 50px;
+
+}

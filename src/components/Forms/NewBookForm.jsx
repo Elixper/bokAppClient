@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { buildFormData } from "../../formDataUtils";
 import apiHandler from "../../api/apiHandler";
+import "./../../styles/NewBookForm.css";
+import "./../../styles/global.css"
 
 const bokState = {
   title: "",
@@ -78,10 +80,9 @@ export default class NewBookForm extends Component {
   render() {
     return (
       <div>
-        <form className="containerform" onSubmit={this.submit}>
+        <form className="containerformbook" onSubmit={this.submit}>
           <h1>Add Your Masterpiece in Bok</h1>
           
-          {/* <div className="title"> */}
             <label htmlFor="title">Title</label>
             <input
               id="title"
@@ -90,8 +91,8 @@ export default class NewBookForm extends Component {
               onChange={this.handleChange}
               placeholder="Title"
             />
-          {/* </div> */}
-          {/* <div className="pseudo"> */}
+          
+
             <label htmlFor="pseudoAuthor">
               <em>"Nom de Plume"</em>
             </label>
@@ -102,9 +103,9 @@ export default class NewBookForm extends Component {
               type="text"
               placeholder="What is your 'nom de plume' ? "
             />
-          {/* </div> */}
+          
 
-          {/* <div className="description"> */}
+          
             <label htmlFor="description">
               A few words about your chef d'oeuvre
             </label>
@@ -114,9 +115,8 @@ export default class NewBookForm extends Component {
               type="text"
               onChange={this.handleChange}
             />
-          {/* </div> */}
+          
 
-          {/* <div className="genre"> */}
             <label htmlFor="genre">Genre</label>
             <select onChange={this.handleChange} name="genre" id="genre">
               <option value="" disabled>
@@ -138,9 +138,8 @@ export default class NewBookForm extends Component {
               <option value="Romance">Romance</option>
               <option value="ScienceFiction">Science Fiction</option>
             </select>
-          {/* </div> */}
           
-          {/* <div className="link"> */}
+        
             <label htmlFor="link"> Link of your book</label>
             <input
               onChange={this.handleChange}
@@ -151,9 +150,8 @@ export default class NewBookForm extends Component {
               pattern="https://.*"
               size="30"
             />
-          {/* </div> */}
+          
 <div>
-          {/* <div className="image"> */}
           <label htmlFor="image">Upload image</label>
             <input
               onChange={this.handleChange}
@@ -162,7 +160,7 @@ export default class NewBookForm extends Component {
               name="image"
               ref={this.bokBookCover}
             />
-          {/* </div> */}
+          
 </div>
           <button className="submit">Submit!!</button>
         </form>
