@@ -16,7 +16,7 @@ export default class Test extends React.Component {
     this.state = {
       booksFromApi: [],
       sujet: this.props.sujet,
-      saveList: [null],
+      saveList: [],
     };
   }
 
@@ -51,7 +51,7 @@ export default class Test extends React.Component {
   // }
   handleSave = (data) => {
    service
-    .post("/bookFromData/add-list", {}, {withCredentials: true})
+    .post("/user/dashboard/add-list", {}, {withCredentials: true})
     .then((result) => {
         console.log(result.data);
         this.setState({
@@ -84,7 +84,7 @@ export default class Test extends React.Component {
 //j'ai dû arréter les tests parce que tooManyRequest
       service
         //populate googleApi data
-        .get("/bookFromData/add")
+        .get("/bookFromData")
         .then((result) => {
           console.log("fetch ggl id and populate ",result.data);
           this.setState({
@@ -95,16 +95,16 @@ export default class Test extends React.Component {
     }
 
 
-  handleSave = (data) => {
-    service
-      .post("/dashboard/add-list", {}, { withCredentials: true })
-      .then((result) => {
-        console.log("handle save ",result.data);
-        this.setState({
-          saveList: [...this.state.saveList, data],
-        });
-      });
-  };
+  // handleSave = (data) => {
+  //   service
+  //     .post("/dashboard/add-list", {}, { withCredentials: true })
+  //     .then((result) => {
+  //       console.log("handle save ",result.data);
+  //       this.setState({
+  //         saveList: [...this.state.saveList, data],
+  //       });
+  //     });
+  // };
 
   // componentDidMount() {
   //   axios
