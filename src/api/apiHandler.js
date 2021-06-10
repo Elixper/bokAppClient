@@ -48,6 +48,20 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
+  getUser(){
+    return service
+    .get("/user/my-account")
+    .then(res=>res.data)
+    .catch(errorHandler)
+  },
+
+  updateUser(data){
+    return service
+    .patch("/user/my-account",data)
+    .then(res=>res.data)
+    .catch(errorHandler)
+  },
+
   addBokBook(data) {
     return service
       .post("/book/your-masterpiece", data)

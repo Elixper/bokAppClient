@@ -19,7 +19,7 @@ class FormProfile extends Component {
 
   componentDidMount() {
     apiHandler
-      .getUserInfos()
+      .getUser()
       .then((data) => {
         this.setState({ user: data, isLoading: false });
       })
@@ -35,7 +35,7 @@ class FormProfile extends Component {
   }
 
   handleChange = (event) => {
-    const key = event.target.name; // This function requires that you have the "name" attribute on your form fields.
+    const key = event.target.id;
     const value = event.target.value;
     this.setState({ user: { ...this.state.user, [key]: value } });
   };
@@ -99,11 +99,11 @@ class FormProfile extends Component {
       });
   };
 
-  handleFileSelect = (temporaryURL) => {
-    // Get the temporaryURL from the UploadWidget component and
-    // set the state so we can have a visual feedback on what the image will look like :)
-    this.setState({ tmpUrl: temporaryURL });
-  };
+  // handleFileSelect = (temporaryURL) => {
+  //   // Get the temporaryURL from the UploadWidget component and
+  //   // set the state so we can have a visual feedback on what the image will look like :)
+  //   this.setState({ tmpUrl: temporaryURL });
+  // };
 
   render() {
     // const { user } = this.state;
@@ -116,61 +116,25 @@ class FormProfile extends Component {
         <form autoComplete="off" className="form" onSubmit={this.handleSubmit}>
           <h1 className="header">Edit profile</h1>
 
-          <div className="round-image user-image">
-            <img
-              src={this.state.tmpUrl || this.state.user.profileImg}
-              alt={this.state.user.firstName}
-            />
-          </div>
           <div className="form-group">
-            <UploadWidget
-              ref={this.imageRef}
-              onFileSelect={this.handleFileSelect}
+            <label htmlFor="profileImg">Upload image</label>
+            <input
+              onChange={this.handleChange}
+              id="profileImg"
+              type="file"
               name="profileImg"
-            >
-              Change profile image
-            </UploadWidget>
-          </div>
-
-          {httpResponse && (
-            <FeedBack
-              message={httpResponse.message}
-              status={httpResponse.status}
+              ref={this.imageRef}
             />
-          )}
-
-          <div className="form-group">
-            <label className="label" htmlFor="firstName">
-              First name
-            </label>
-            <input
-              className="input"
-              id="firstName"
-              type="text"
-              name="firstName"
-              onChange={this.handleChange}
-              value={this.state.user.firstName}
-            />
-            {!this.isValidInput("firstName") && (
-              <p className="input-error">Invalid input</p>
-            )}
           </div>
 
           <div className="form-group">
-            <label className="label" htmlFor="lastName">
-              Last Name
-            </label>
+            <label htmlFor="username">User Name : </label>
             <input
-              className="input"
-              id="lastName"
+              id="username"
+              name="username"
               type="text"
-              name="lastName"
-              onChange={this.handleChange}
-              value={this.state.user.lastName}
+              value={this.state.user.username}
             />
-            {!this.isValidInput("lastName") && (
-              <p className="input-error">Invalid input</p>
-            )}
           </div>
 
           <div className="form-group">
@@ -187,21 +151,15 @@ class FormProfile extends Component {
             />
           </div>
           <div className="form-group">
-            <label className="label" htmlFor="phoneNumber">
-              Phone number
-            </label>
+            <label htmlFor="biography">Your Bio : </label>
             <input
-              className="input"
-              id="phoneNumber"
+              id="biography"
+              name="biography"
               type="text"
-              name="phoneNumber"
-              onChange={this.handleChange}
-              value={this.state.user.phoneNumber}
+              value={this.state.user.biography}
             />
-            {!this.isValidInput("phoneNumber") && (
-              <p className="input-error">Invalid input</p>
-            )}
           </div>
+
           <Button primary disabled={this.checkError()}>
             Save
           </Button>

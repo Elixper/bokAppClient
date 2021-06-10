@@ -5,9 +5,9 @@ import axios from "axios";
 import NavMain from "../components/NavMain";
 import "./../styles/Random.css";
 import "./../styles/global.css";
-import  apiHandler from "../api/apiHandler"
+import api from "../api/apiHandler";
 
-// const {service} = api
+const { service } = api;
 
 export default class Test extends React.Component {
   constructor(props) {
@@ -67,12 +67,13 @@ export default class Test extends React.Component {
 //   }
 
   componentDidMount() {
+    
     axios
-      .get(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
       )
       .then((response) => {
-        // console.log(response.data)
+        console.log("axios Api" ,response.data)
         this.setState({
           booksFromApi: response.data.items,
         });
@@ -80,7 +81,46 @@ export default class Test extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+//j'ai dû arréter les tests parce que tooManyRequest
+      service
+        //populate googleApi data
+        .get("/bookFromData/add")
+        .then((result) => {
+          console.log("fetch ggl id and populate ",result.data);
+          this.setState({
+            saveList: result.data,
+          });
+        })
+        .catch((error) => console.log(error));
+    }
+
+
+  handleSave = (data) => {
+    service
+      .post("/dashboard/add-list", {}, { withCredentials: true })
+      .then((result) => {
+        console.log("handle save ",result.data);
+        this.setState({
+          saveList: [...this.state.saveList, data],
+        });
+      });
+  };
+
+  // componentDidMount() {
+  //   axios
+  //     .get(
+  //       `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
+  //     )
+  //     .then((response) => {
+  //       // console.log(response.data)
+  //       this.setState({
+  //         booksFromApi: response.data.items,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   // componentWillUnmount() {
   //  this.axiosCancelSource.cancel("Axios request canceled.");
@@ -170,7 +210,7 @@ export default class Test extends React.Component {
                 
                  <a href={booksFromArray.saleInfo.buylink}>Buy This Book</a>
                 )} */}
-                <a href={booksFromArray.saleInfo?.buyLink} >Buy</a>
+                {/* <a href={booksFromArray.saleInfo?.buyLink}>Buy</a> */}
               </div>
               <div className="actionsicons">
               <img
