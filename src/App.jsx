@@ -8,24 +8,27 @@ import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NewBookForm from "./components/Forms/NewBookForm";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound"
 
 function App() {
   return (
-   
     <div className="App">
-    
       <Switch>
-     
         <Route exact path="/" component={Home} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route exact path="/random-settings" component={RandomSettings} /> 
+        <Route exact path="/random-settings" component={RandomSettings} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
+        
+
+        <ProtectedRoute path="/dashboard" component={Dashboard} />
+        <ProtectedRoute exact path="/add-your-masterpiece" component={NewBookForm}/>
+        <ProtectedRoute exact path="/profile" component={Profile} />
+
+        {/* <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/add-your-masterpiece" component={NewBookForm} />
-        <Route exact path="/profile" component={Profile} />
-
-{/* Add protected route to dashboard & profile */}
-
+        <Route exact path="/profile" component={Profile} /> */}
+<Route path='*' component={NotFound}/>
+      
       </Switch>
     </div>
   );

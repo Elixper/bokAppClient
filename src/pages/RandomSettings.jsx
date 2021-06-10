@@ -18,9 +18,10 @@ export default class Test extends React.Component {
       booksFromApi: [],
       sujet: this.props.sujet,
       saveList: [],
+      message: "",
     };
   }
-
+// get the googleApi and change the sujet(parameter) when the user click on the button  
   handleClick = (sujet) => {
     axios
       .get(
@@ -31,36 +32,21 @@ export default class Test extends React.Component {
         this.setState({
           booksFromApi: response.data.items,
           sujet: sujet,
-          savelist: response.data.items, // recup l'id regarde le console.log() pour avoir le bon chemin de l'objet
         });
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  
-
-  // handleSave = (data) => {
-  //   console.log("je suis la savelist", this.state.saveList);
-  //   service
-  //     .post("/user/dashboard/add-list", {}, { withCredentials: true })
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       this.setState({
-  //         saveList: [...this.state.saveList, data],
-  //       });
-  //     });
-  // };
-
-  handleSave = (evt, id) =>{
-    const bookId = {id: id}
+// update the user favGgl with the id of the google book
+  handleSave = (evt, id) => {
+    const bookId = { id: id };
     apiHandler
-    .saveBookFromApi(bookId)
-    .then(this.setState({ message : "save in your list"}))
-    .catch(err => console.log(err))
-  }
-
+      .saveBookFromApi(bookId)
+      .then(this.setState({ message: "save in your list" }))
+      .catch((err) => console.log(err));
+  };
+//get the google API
   componentDidMount() {
     axios
       .get(
@@ -75,56 +61,24 @@ export default class Test extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-    //j'ai dû arréter les tests parce que tooManyRequest
-    service
-      //populate googleApi data
-      .get("/bookFromData")
-      .then((result) => {
-        console.log("fetch ggl id and populate ", result.data);
-        this.setState({
-          saveList: result.data,
-        });
-      })
-      .catch((error) => console.log(error));
+
+    // service
+
+    //   .get("/bookFromData")
+    //   .then((result) => {
+    //     console.log("fetch ggl id and populate ", result.data);
+    //     this.setState({
+    //       saveList: result.data,
+    //     });
+    //   })
+    //   .catch((error) => console.log(error));
   }
-
-  // handleSave = (data) => {
-  //   service
-  //     .post("/dashboard/add-list", {}, { withCredentials: true })
-  //     .then((result) => {
-  //       console.log("handle save ",result.data);
-  //       this.setState({
-  //         saveList: [...this.state.saveList, data],
-  //       });
-  //     });
-  // };
-
-  // componentDidMount() {
-  //   axios
-  //     .get(
-  //       `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&filter=paid-ebooks&langRestrict=en&maxResults=20&&orderBy=newest&key=${process.env.REACT_APP_GOOGLE_BOOK_TOKEN}`
-  //     )
-  //     .then((response) => {
-  //       // console.log(response.data)
-  //       this.setState({
-  //         booksFromApi: response.data.items,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
-
-  // componentWillUnmount() {
-  //  this.axiosCancelSource.cancel("Axios request canceled.");
-  // }
-  
 
   render() {
     const booksFromArray = this.state.booksFromApi
       .sort(() => Math.random() - Math.random())
       .find(() => true);
-    console.log("BITCH LE BOOK", booksFromArray)
+    console.log("Array of books", booksFromArray);
     return (
       <div>
         <NavMain />
@@ -189,7 +143,6 @@ export default class Test extends React.Component {
                   <h2> {booksFromArray.volumeInfo.authors}</h2>
                   <p> {booksFromArray.volumeInfo.publishedDate}</p>
                   <p> {booksFromArray.volumeInfo.pageCount} pages</p>
-
                 </div>
                 <p className="summary">
                   {booksFromArray.volumeInfo.description}
