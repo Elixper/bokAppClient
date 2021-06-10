@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Route, Link, NavLink, Redirect, Switch } from "react-router-dom";
 import apiHandler from "../api/apiHandler";
 import "./../styles/NothingYet.css";
+import Button from "./../components/Base/Button"
+import EditBookForm from "./../components/Forms/EditBookForm"
+
 
 const { service } = apiHandler;
 
@@ -70,15 +73,29 @@ class Masterpieces extends Component {
                   <button onClick={() => this.handleDelete(masterpiece._id)}>
                     Delete
                   </button>
-                  {/* <Link to={`/masterpieces/edit/${masterpiece._id}`}>Edit</Link> */}
-                </div>
+                  <Button><NavLink to={`/dashboard/my-masterpieces/edit/${masterpiece._id}`}>Edit</NavLink></Button>
+                <Switch>
+         <Route exact path={`/dashboard/my-masterpieces/edit/${masterpiece._id}`} component={EditBookForm}></Route>
+       
+         
+         {/* <Redirect from={`/masterpieces/edit/${masterpiece._id}`} to="/masterpieces"/> */}
+       </Switch>
+</div>
               </div>
             );
           })}
         </div>
+
+       
       </div>
     );
   }
 }
 
 export default Masterpieces;
+
+
+
+        
+      
+       

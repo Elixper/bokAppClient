@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect,Link } from "react-router-dom";
 import { buildFormData } from "../../formDataUtils";
 import apiHandler from "../../api/apiHandler";
-import "./../../styles/newBookForm.css";
+import "./../../styles/NewBookForm.css";
 import "./../../styles/global.css"
 
 const bokState = {

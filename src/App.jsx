@@ -21,9 +21,8 @@ function App() {
         
 
         <ProtectedRoute path="/dashboard" component={Dashboard} />
-        <ProtectedRoute exact path="/add-your-masterpiece" component={NewBookForm}/>
         <ProtectedRoute exact path="/profile" component={Profile} />
-    {/* <ProtectedRoute exact path="/" /> */}
+    
         {/* <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/add-your-masterpiece" component={NewBookForm} />
         <Route exact path="/profile" component={Profile} /> */}

@@ -1,19 +1,34 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { buildFormData } from "../../formDataUtils";
+import {withUser} from "./../Auth/withUser"
 
-export default class EditBookForm extends Component {
+ class EditBookForm extends Component {
+
   state = {
     httpResponse: null,
+    // title: "",
+    // pseudoAuthor: "",
+    // description: "",
+    // genre: "",
+    // image: "",
+    // link: "",
+
   };
+
   bokbookRef = React.createRef();
 
   handleChange = (evt) => {
+   
     const value =
       evt.target.type === "file" ? evt.target.files[0] : evt.target.value;
     const key = evt.target.title;
+    // console.log(value)
+    // console.log(key)
     this.setState({ [key]: value });
   };
+
+
   handleSubmit = (evt) => {
     evt.preventDefault();
     const formData = new FormData();
@@ -21,9 +36,9 @@ export default class EditBookForm extends Component {
     buildFormData(formData, data);
 
     apiHandler
-      .updateBokbook(this.props.bokBook.id, formData)
+      .updateBokbook(this.props.bokBook._id, formData)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         this.setState({
           httpResponse: {
             status: "success",
@@ -47,20 +62,22 @@ export default class EditBookForm extends Component {
       });
   };
 
+  
   render() {
     return (
       <div>
         <form ref={this.bokbookRef} onSubmit={this.submit}>
-          <h1>Add Your Masterpiece in Bok</h1>
+          <h1>Edit Your Masterpiece</h1>
 
           <div className="title">
+          
             <label htmlFor="title">Title</label>
             <input
               id="title"
               name="title"
               type="text"
               onChange={this.handleChange}
-              placeholder="Title"
+              // placeholder="Title"
               value={this.state.title || ""}
             />
           </div>
@@ -74,7 +91,7 @@ export default class EditBookForm extends Component {
               name="pseudoAuthor"
               onChange={this.handleChange}
               type="text"
-              placeholder="Change your author name? "
+              // placeholder="Change your author name? "
               value={this.state.pseudoAuthor || ""}
             />
           </div>
@@ -132,7 +149,7 @@ export default class EditBookForm extends Component {
               name="link"
               type="url"
               value={this.link}
-              placeholder="https://example.com"
+              // placeholder="https://example.com"
               pattern="https://.*"
               size="30"
             />
@@ -144,3 +161,5 @@ export default class EditBookForm extends Component {
     );
   }
 }
+
+export default withUser(EditBookForm);
