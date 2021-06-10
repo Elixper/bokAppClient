@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import { withUser } from "../components/Auth/withUser";
 // import apiHandler from "../api/apiHandler";
 import FavItems from "../components/FavItem"
-import NewBookForm from "../components/Forms/EditBookForm"
+import NewBookForm from "../components/Forms/NewBookForm"
 import Masterpieces from "../components/Masterpieces"
 
 import Button from "../components/Base/Button"

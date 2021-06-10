@@ -1,39 +1,89 @@
-.all{
+
+
+/* BUTTONS GENRES */
+
+.all {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+}
+
+.choices {
+  width: 60vw;
+  margin: 50px 0px 50px 0px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+
+/* BIG BOOK CARD
+
+/* .bigcontainer ==> global.css */
+.fixed{
+    width: 70vw;
+    height: 60vh;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
-    flex-flow: column wrap;
-}
-
-.choices{
-    width: 80vw;
-    margin: 30px 0px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+    flex-direction: row;
 }
 
 
-.cover{
-    width: 260px;
-    height: 410px;
-    border-radius: 20px; 
-    margin-right: 30px;
+.cover {
+  width: 200px;
+  height: 315px;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-left: 30px;
 }
 
-
-.infosright{
-    width: 50vw;
+.infosright {
+  width: 30vw;
+  margin-right: 30px;
 }
 
-.summary{
-    width: 40vw;
+.infosright h1{
+    color: var(--purple);
 }
 
-.butt{
-    background-color: none;
-    border: none;
+.infosright h2{
+font-size: 12px;
+text-transform: uppercase;
+font-weight: 500;
 }
 
-.butt:hover {
-   cursor: pointer;
-  }
+.inlineinfos{
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+.containsummary {
+  width: 30vw;
+}
+
+.summary {
+  position: relative;
+  height: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;   */
+  /* width: 80vw;
+   max-height: 80vh;
+   white-space: nowrap;
+   
+    */
+}
+
+.butt {
+  background-color: none;
+  border: none;
+}
+
+.actionicons {
+  display: flex;
+  flex-direction: column;
+  
+}

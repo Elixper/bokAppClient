@@ -1,0 +1,12 @@
+.containerformbook{
+    border: solid 1px var(--purple); 
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    align-items: center;
+    width: max-content;
+  }
+  

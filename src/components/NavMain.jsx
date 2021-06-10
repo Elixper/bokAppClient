@@ -3,9 +3,6 @@ import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import Button from "../components/Base/Button"
-
-
-
 import "../styles/NavMain.css";
 import "../styles/NavUser.css";
 
@@ -23,7 +20,6 @@ const NavMain = (props) => {
       });
   }
 
-  console.log("context", context)
 
   return (
     <nav className="NavMain">
